@@ -1,0 +1,195 @@
+Table raw_assets {
+    id VARCHAR(255) [pk] /// unique identifier for asset
+    rank INT /// rank is in ascending order based on market cap
+    symbol VARCHAR(10) /// most common symbol used to identify this asset on an exchange
+    name VARCHAR(255) /// proper name for asset
+    supply DECIMAL(20, 8) /// available supply for trading
+    maxSupply DECIMAL(20, 8) /// total quantity of asset issued
+    marketCapUsd DECIMAL(20, 2) /// supply x price
+    volumeUsd24Hr DECIMAL(20, 2) /// quantity of trading volume in USD over the last 24 hours
+    priceUsd DECIMAL(20, 8) /// volume-weighted price in USD
+    changePercent24Hr DECIMAL(5, 2) /// the direction and value change in the last 24 hours (e.g., -5.34 for a decrease)
+    vwap24Hr DECIMAL(20, 8) /// Volume Weighted Average Price in the last 24 hours
+}
+
+Table raw_assets_by_id {
+    id VARCHAR(255) [pk] /// unique identifier for asset
+    rank INT /// rank is in ascending order - this number is directly associated with the marketcap whereas the highest marketcap receives rank 1
+    symbol VARCHAR(10) /// most common symbol used to identify this asset on an exchange
+    name VARCHAR(255) /// proper name for asset
+    supply DECIMAL(20, 8) /// available supply for trading
+    maxSupply DECIMAL(20, 8) /// total quantity of asset issued
+    marketCapUsd DECIMAL(20, 2) /// supply x price
+    volumeUsd24Hr DECIMAL(20, 2) /// quantity of trading volume represented in USD over the last 24 hours
+    priceUsd DECIMAL(20, 8) /// volume-weighted price based on real-time market data, translated to USD
+    changePercent24Hr DECIMAL(5, 2) /// the direction and value change in the last 24 hours
+    vwap24Hr DECIMAL(20, 8) /// Volume Weighted Average Price in the last 24 hours
+}
+
+
+Table raw_assets_historical {
+    priceUsd DECIMAL(20, 8) /// volume-weighted price based on real-time market data, translated to USD
+    time BIGINT /// timestamp in UNIX in milliseconds
+}
+
+Table raw_assets_by_market {
+    exchangeId VARCHAR(255) [pk] /// unique identifier for exchange
+    baseId VARCHAR(255) /// unique identifier for this asset, base is asset purchased
+    quoteId VARCHAR(255) /// unique identifier for this asset, quote is asset used to purchase base
+    baseSymbol VARCHAR(10) /// most common symbol used to identify asset, base is asset purchased
+    quoteSymbol VARCHAR(10) /// most common symbol used to identify asset, quote is asset used to purchase base
+    volumeUsd24Hr DECIMAL(20, 2) /// volume transacted on this market in last 24 hours
+    priceUsd DECIMAL(20, 8) /// the amount of quote asset traded for one unit of base asset
+    volumePercent DECIMAL(5, 2) /// percent of quote asset volume
+}
+
+
+Table raw_currency_conversion {
+    id VARCHAR(255) [pk] /// unique identifier for asset or fiat
+    symbol VARCHAR(10) /// most common symbol used to identify asset or fiat
+    currencySymbol VARCHAR(10) /// currency symbol used to identify asset or fiat
+    rateUsd DECIMAL(20, 8) /// rate conversion to USD
+    type VARCHAR(10) /// type of currency - fiat or crypto
+}
+
+Table raw_exchanges {
+    id VARCHAR(255) [pk] /// unique identifier for exchange
+    name VARCHAR(255) /// proper name of exchange
+    rank INT /// rank is in ascending order - this number is directly associated with the total exchange volume whereas the highest volume exchange receives rank 1
+    percentTotalVolume DECIMAL(5, 2) /// the amount of daily volume a single exchange transacts in relation to total daily volume of all exchanges
+    volumeUsd DECIMAL(20, 2) /// daily volume represented in USD
+    tradingPairs INT /// number of trading pairs (or markets) offered by exchange
+    socket BOOLEAN /// true/false, true = trade socket available, false = trade socket unavailable
+    exchangeUrl VARCHAR(255) /// website to exchange
+    updated BIGINT /// UNIX timestamp (milliseconds) since information was received from this exchange
+}
+
+Table raw_market {
+    exchangeId VARCHAR(255) /// optional, poloniex, search by exchange id
+    baseSymbol VARCHAR(10) /// optional, BTC, returns all containing the base symbol
+    quoteSymbol VARCHAR(10) /// optional, ETH, returns all containing the quote symbol
+    baseId VARCHAR(255) /// optional, bitcoin, returns all containing the base id
+    quoteId VARCHAR(255) /// optional, ethereum, returns all containing the quote id
+    assetSymbol VARCHAR(10) /// optional, BTC, returns all assets containing symbol (base and quote)
+    assetId VARCHAR(255) /// optional, bitcoin, returns all assets containing id (base and quote)
+    limit INT /// optional, 5, max limit of 2000
+    offset INT /// optional, 1, offset
+}
+
+Table raw_candles {
+    open DECIMAL(20, 8) /// the price (quote) at which the first transaction was completed in a given time period
+    high DECIMAL(20, 8) /// the top price (quote) at which the base was traded during the time period
+    low DECIMAL(20, 8) /// the bottom price (quote) at which the base was traded during the time period
+    close DECIMAL(20, 8) /// the price (quote) at which the last transaction was completed in a given time period
+    volume DECIMAL(20, 8) /// the amount of base asset traded in the given time period
+    period BIGINT /// timestamp for starting of that time period, represented in UNIX milliseconds
+}
+
+
+Table DIM_ASSET {
+  ASSET_SR_KEY INT [primary key]
+  ASSET_ID VARCHAR(255)
+  ASSET_SYMBOL VARCHAR(255)
+  ASSET_NAME VARCHAR(255)
+}
+
+Table DIM_CURRENCY_RATE {
+  CURRENCY_SR_KEY INT [primary key]
+  CURRENCY_ID VARCHAR(255)
+  CURRENCY_SYMBOL VARCHAR(255)
+  CURRENCY_TYPE_SYMBOL VARCHAR(255)
+  CURRENCY_RATE_USD DECIMAL(20, 8)
+}
+
+Table DIM_EXCHANGE {
+  EXCHANGE_SR_KEY INT [primary key]
+  EXCHANGE_ID VARCHAR(255)
+  EXCHANGE_NAME VARCHAR(255)
+  EXCHANGE_NUM_TRADING_PAIRS INT
+  EXCHANGE_IS_SOCKET_AVAILABLE VARCHAR(255)
+  EXCHANGE_URL VARCHAR(255)
+}
+
+Table DIM_MARKET {
+  MARKET_SR_KEY INT [primary key]
+  EXCHANGE_ID VARCHAR(255)
+  MARKET_BASE_SYMBOL VARCHAR(255)
+  MARKET_BASE_ID VARCHAR(255)
+  MARKET_QUOTE_SYMBOL VARCHAR(255)
+  MARKET_QUOTE_ID VARCHAR(255)
+}
+
+Table DIM_DATE_TIME {
+  DATE_TIME_SR_KEY INT [primary key]
+  DATE_TIME INT
+}
+
+
+Table FACT_ASSET_PRICE_PAST24H {
+  FACT_ASSET_SR_KEY INT [primary key]
+  ASSET_SR_KEY INT
+  ASSET_RANK INT
+  ASSET_SUPPLY DECIMAL(20, 8)
+  MAX_ASSET_SUPPLY DECIMAL(20, 8)
+  ASSET_MARKET_CAP_USD DECIMAL(20, 8)
+  ASSET_VOLUME_USD DECIMAL(20, 8)
+  ASSET_PRICE_USD DECIMAL(20, 8)
+  ASSET_PERCENT_CHANGE DECIMAL(20, 8)
+  AVG_ASSET_VOLUME_WEIGHTED_PRICE_USD DECIMAL(20, 8)
+  ASSET_PRICE_TIMESTAMP_SR_KEY INT
+}
+
+Table FACT_ASSET_PRICE_HISTORICAL {
+  ASSET_PRICE_USD DECIMAL(20, 8)
+  ASSET_PRICE_TIMESTAMP_SR_KEY INT
+}
+
+Table FACT_EXCHANGE {
+  FACT_EXCHANGE_SR_KEY INT [primary key]
+  EXCHANGE_SR_KEY INT
+  EXCHANGE_RANK INT
+  EXCHANGE_VOLUME_PERCENTAGE DECIMAL(20, 8)
+  EXCHANGE_VOLUME_USD DECIMAL(20, 8)
+  EXCHANGE_UPDATE_TIME_SR_KEY INT
+}
+
+Table FACT_MARKET {
+  FACT_MARKET_SR_KEY INT [primary key]
+  MARKET_SR_KEY INT
+  EXCHANGE_RANK INT
+  MARKET_PRICE_QUOTE DECIMAL(20, 8)
+  MARKET_PRICE_QUOTE_USD DECIMAL(20, 8)
+  MARKET_24H_VOLUME_USD DECIMAL(20, 8)
+  MARKET_PRESENT_EXCHANGE_VOLUME DECIMAL(20, 8)
+  MARKET_24H_TRADE_COUNT INT
+  MARKET_UPDATED_TIME_SR_KEY INT
+}
+
+Table FACT_CANDLE {
+  FACT_CANDLE_SR_KEY INT [primary key]
+  MARKET_SR_KEY INT
+  CANDLE_OPEN DECIMAL(20, 8)
+  CANDLE_HIGH DECIMAL(20, 8)
+  CANDLE_LOW DECIMAL(20, 8)
+  CANDLE_CLOSE DECIMAL(20, 8)
+  CANDLE_VOLUME DECIMAL(20, 8)
+  CANDLE_UPDATED_SR_KEY INT
+}
+
+Ref: "DIM_ASSET"."ASSET_SR_KEY" < "FACT_ASSET_PRICE_PAST24H"."ASSET_SR_KEY"
+
+Ref: "DIM_DATE_TIME"."DATE_TIME_SR_KEY" < "FACT_ASSET_PRICE_HISTORICAL"."ASSET_PRICE_TIMESTAMP_SR_KEY"
+
+Ref: "DIM_EXCHANGE"."EXCHANGE_SR_KEY" < "FACT_EXCHANGE"."EXCHANGE_SR_KEY"
+
+Ref: "DIM_DATE_TIME"."DATE_TIME_SR_KEY" < "FACT_EXCHANGE"."EXCHANGE_UPDATE_TIME_SR_KEY"
+
+Ref: "DIM_MARKET"."MARKET_SR_KEY" < "FACT_CANDLE"."MARKET_SR_KEY"
+
+Ref: "DIM_DATE_TIME"."DATE_TIME_SR_KEY" < "FACT_CANDLE"."CANDLE_UPDATED_SR_KEY"
+
+Ref: "DIM_MARKET"."MARKET_SR_KEY" < "FACT_MARKET"."FACT_MARKET_SR_KEY"
+
+Ref: "DIM_DATE_TIME"."DATE_TIME_SR_KEY" < "FACT_MARKET"."MARKET_UPDATED_TIME_SR_KEY"
+
+Ref: "DIM_DATE_TIME"."DATE_TIME_SR_KEY" < "FACT_ASSET_PRICE_PAST24H"."ASSET_PRICE_TIMESTAMP_SR_KEY"
