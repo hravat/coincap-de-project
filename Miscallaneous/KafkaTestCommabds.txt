@@ -1,0 +1,20 @@
+### LIST KAFKA TOPICS
+docker exec -it kafka kafka-topics --list \
+ --bootstrap-server kafka:9092
+
+### KAFKA TOPICS CREATE  
+docker exec -it kafka kafka-topics --create \
+--topic test-topic  \
+--bootstrap-server kafka:9092 \
+--partitions 1 --replication-factor 1
+
+
+### KAFKA CONSUMER
+docker exec -it kafka kafka-console-consumer \
+--bootstrap-server kafka:9092 \
+--topic test-topic --from-beginning
+
+### KAFKA PRODUCER
+docker exec -it kafka kafka-console-producer \
+--broker-list kafka:9092 \
+--topic test-topic
