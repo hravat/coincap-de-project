@@ -279,6 +279,75 @@ services:
 
 ################### AIRFLOW SERVICES ########################################
 
+
+################ FLINK SERVICES ##############################################
+
+  jobmanager:
+    image: flink:latest
+    ports:
+      - "8081:8081"
+    command: jobmanager
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager        
+
+  taskmanager:
+    image: flink:latest
+    depends_on:
+      - jobmanager
+    command: taskmanager
+    scale: 1
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+        taskmanager.numberOfTaskSlots: 2        
+  sql-client:
+    image: flink:latest
+    command: bin/sql-client.sh
+    depends_on:
+      - jobmanager
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+        rest.address: jobmanager  
+
+
+################ FLINK SERVICES ##############################################
+
+### DBT SERVICES ############################################################
+  dbt:
+    image: ghcr.io/dbt-labs/dbt-postgres:latest
+    container_name: dbt_container
+    depends_on:
+      - postgres_db
+    volumes:
+      - ./dbt_project:/usr/app
+    working_dir: /usr/app
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - airflownetwork
+
+### DBT SERVICES ############################################################
+
+
+## Grafana Services ##########################################################
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin  # Set the admin password
+    ports:
+      - "3000:3000"  # Expose Grafana's port
+    volumes:
+      - ~/grafana-storage:/var/lib/grafana  # Persist Grafana data
+    networks:
+      - airflownetwork
+
+## Grafana Services ##########################################################
+
 networks:
   airflownetwork:
     driver: bridge
