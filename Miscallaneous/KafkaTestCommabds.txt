@@ -1,6 +1,6 @@
 ### LIST KAFKA TOPICS
-docker exec -it kafka kafka-topics --list \
- --bootstrap-server kafka:9092
+docker exec -it broker kafka-topics --list \
+ --bootstrap-server broker:9092
 
 ### KAFKA TOPICS CREATE  
 docker exec -it kafka kafka-topics --create \
@@ -10,11 +10,14 @@ docker exec -it kafka kafka-topics --create \
 
 
 ### KAFKA CONSUMER
-docker exec -it kafka kafka-console-consumer \
---bootstrap-server kafka:9092 \
+docker exec -it broker kafka-console-consumer \
+--bootstrap-server broker:9092 \
 --topic test-topic --from-beginning
 
 ### KAFKA PRODUCER
-docker exec -it kafka kafka-console-producer \
+docker exec -it broker kafka-console-producer \
 --broker-list kafka:9092 \
 --topic test-topic
+
+### LIST KAFKA TOPICS
+curl -X GET "http://localhost:8082/topics" 

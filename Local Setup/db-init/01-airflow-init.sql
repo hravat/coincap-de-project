@@ -19,4 +19,4 @@ GRANT ALL PRIVILEGES ON DATABASE airflow_db TO airflow_user;
 CREATE SCHEMA IF NOT EXISTS airflow AUTHORIZATION :AIRFLOW_DB_USER;
 
 -- Grant usage and privileges on the schema
-GRANT ALL PRIVILEGES ON SCHEMA public TO airflow_user;
+GRANT ALL PRIVILEGES ON SCHEMA public TO :AIRFLOW_DB_USER;

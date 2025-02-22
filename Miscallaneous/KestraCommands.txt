@@ -1,0 +1,7 @@
+### SEND FLOW API TO KESTRA 
+curl -X POST "http://localhost:8085/api/v1/flows" \                                                 ─╯
+     -H "Content-Type: application/x-yaml" \
+     --data-binary @api_flow.yml
+
+### DELETE FLOW API TO KESTRA
+curl -X DELETE "http://localhost:8085/api/v1/flows/dev/python_workflow"

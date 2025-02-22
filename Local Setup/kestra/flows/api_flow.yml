@@ -1,0 +1,23 @@
+id: python_workflow
+namespace: dev
+
+triggers:
+  - id: schedule
+    type: io.kestra.plugin.core.trigger.Schedule
+    cron: "* * * * *"
+
+
+tasks:
+  - id: run_python_script
+    type: io.kestra.plugin.scripts.python.Commands
+    namespaceFiles:
+      enabled: true
+    taskRunner:
+      type: io.kestra.plugin.scripts.runner.docker.Docker
+    containerImage: python:slim
+    warningOnStdErr: false
+    beforeCommands:
+      - pip install requests
+      - pip install confluent-kafka
+    commands:
+      - python rates_api.py

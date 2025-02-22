@@ -9,10 +9,10 @@ CREATE DATABASE kestra_db;
 
 \c kestra_db
 -- Create a user for Airflow
-CREATE USER kestra_user WITH PASSWORD 'kestra_password';
+CREATE USER :KESTRA_DB_USER WITH PASSWORD :'KESTRA_DB_PASSWORD';
 
 
-GRANT ALL PRIVILEGES ON DATABASE kestra_db TO kestra_user;
+GRANT ALL PRIVILEGES ON DATABASE kestra_db TO :KESTRA_DB_USER;
 
 -- Grant usage and privileges on the schema
-GRANT ALL PRIVILEGES ON SCHEMA public TO kestra_user;
+GRANT ALL PRIVILEGES ON SCHEMA public TO :KESTRA_DB_USER;
