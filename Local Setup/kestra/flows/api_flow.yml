@@ -18,6 +18,5 @@ tasks:
     warningOnStdErr: false
     beforeCommands:
       - pip install requests
-      - pip install confluent-kafka
     commands:
       - python rates_api.py
