@@ -21,3 +21,9 @@ docker exec -it broker kafka-console-producer \
 
 ### LIST KAFKA TOPICS
 curl -X GET "http://localhost:8082/topics" 
+
+
+curl -X GET "http://host.docker.internal:8082/topics" 
+
+
+curl -X GET "http://broker:9092/topics"
