@@ -336,12 +336,12 @@ services:
       # Our base image runs without root, but the Docker Compose implementation needs root to access the Docker socket
       # To run Kestra in a rootless mode in production, see: https://kestra.io/docs/installation/podman-compose
       user: "root"
-      command: server standalone
+      command: [ "server", "standalone", "-f", "/app/flows"] 
       volumes:
         - ~/kestra-data:/app/storage
         - /var/run/docker.sock:/var/run/docker.sock
         - /tmp/kestra-wd:/tmp/kestra-wd
-        #- ./kestra/flows:/app/flows
+        - ./kestra/flows:/app/flows
       environment:
         KESTRA_CONFIGURATION: |
           datasources:
@@ -376,6 +376,7 @@ services:
           condition: service_started
       networks:
         - airflownetwork 
+      
 
 
 ################KESTRA SERVICES ####################

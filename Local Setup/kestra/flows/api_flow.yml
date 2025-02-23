@@ -14,9 +14,10 @@ tasks:
       enabled: true
     taskRunner:
       type: io.kestra.plugin.scripts.runner.docker.Docker
-    containerImage: python:slim
+      pullPolicy: NEVER # ⚡️ Use the local image instead of pulling it from DockerHub
+    containerImage: kestra-custom:latest 
     warningOnStdErr: false
-    beforeCommands:
-      - pip install requests
+#    beforeCommands:
+#      - pip install requests
     commands:
       - python rates_api.py

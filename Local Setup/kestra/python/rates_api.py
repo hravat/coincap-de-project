@@ -6,6 +6,9 @@ API_URL = "https://api.coincap.io/v2/rates"
 KAFKA_REST_PROXY_URL = "http://host.docker.internal:8082"  # Replace with the actual REST Proxy URL
 KAFKA_TOPIC = "test-topic"
 
+
+###TEST COMMENT TO SEE IF FILE IS BEING PICKED BY KESTRA  
+
 def fetch_and_send_rates_to_kafka():
     try:
         response = requests.get(API_URL)
