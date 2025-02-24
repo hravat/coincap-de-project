@@ -1,0 +1,29 @@
+###START FLINK CLIENVIRONMENT
+docker compose run sql-client
+docker exec -it sql-client /bin/bash
+./sql-client.sh
+
+## CREATE TABLE
+CREATE TABLE kafka_source (
+    id STRING,
+    symbol STRING,
+    rateUsd STRING,  
+    source STRING,
+    times_tamp STRING
+) WITH (
+    'connector' = 'kafka',
+    'topic' = 'test-topic',
+    'properties.bootstrap.servers' = 'broker:29092',
+    'properties.group.id' = 'flink-consumer',
+    'scan.startup.mode' = 'latest-offset',
+    'format' = 'json',
+    'json.ignore-parse-errors' = 'true'
+);
+
+select * from kafka_source ;
+
+
+curl -X POST \
+     -H "Content-Type: application/json" \
+     -d @setup.sql \
+     http://localhost:8081/v1/sql/queries

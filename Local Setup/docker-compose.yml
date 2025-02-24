@@ -257,6 +257,22 @@ services:
       
 ################ FLINK SERVICES ##############################################
 
+  sql-client:
+      container_name: 'sql-client'
+      build:
+        context: .
+        dockerfile: flink/sql-client/Dockerfile
+      depends_on:
+        - jobmanager
+      environment:
+        FLINK_JOBMANAGER_HOST: jobmanager
+      volumes:
+        - ./flink/settings/:/settings
+        - ./flink/sql:/opt/flink/sql-scripts        
+      networks:
+        - airflownetwork
+      #entrypoint: "/path/to/docker-entrypoint.sh"
+
   jobmanager:
     image: flink:latest
     ports:
@@ -265,7 +281,14 @@ services:
     environment:
       - |
         FLINK_PROPERTIES=
-        jobmanager.rpc.address: jobmanager        
+        jobmanager.rpc.address: jobmanager
+    volumes:
+      - ./flink/settings/:/settings
+      - ./flink/data/:/data
+      - ./flink/sql:/opt/flink/sql-scripts
+      - ~/flink-data/catalogs:/flink/catalogs
+    networks:
+      - airflownetwork
 
   taskmanager:
     image: flink:latest
@@ -277,18 +300,12 @@ services:
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: jobmanager
-        taskmanager.numberOfTaskSlots: 2        
-  sql-client:
-    image: flink:latest
-    command: bin/sql-client.sh
-    depends_on:
-      - jobmanager
-    environment:
-      - |
-        FLINK_PROPERTIES=
-        jobmanager.rpc.address: jobmanager
-        rest.address: jobmanager  
-
+        taskmanager.numberOfTaskSlots: 10
+    volumes:
+      - ./flink/settings/:/settings
+      - ./flink/data/:/data
+    networks:
+      - airflownetwork
 
 ################ FLINK SERVICES ##############################################
 
@@ -368,6 +385,7 @@ services:
               tmpDir:
                 path: /tmp/kestra-wd/tmp
             url: http://kestra:8085/
+            KAFKA_BOOTSTRAP_SERVERS: broker:29092 
       ports:
         - "8085:8080"
         - "8086:8081"
@@ -376,7 +394,7 @@ services:
           condition: service_started
       networks:
         - airflownetwork 
-      
+            
 
 
 ################KESTRA SERVICES ####################

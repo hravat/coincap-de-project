@@ -21,13 +21,13 @@ def fetch_and_send_rates_to_kafka():
                 # Construct the message to send to Kafka with the required data
                 timestamp = datetime.utcnow().isoformat()
                 message = {
-                    "value": json.dumps({
+                    "value": {
                         "id": rate['id'],
                         "symbol": rate['symbol'],
                         "rateUsd": rate['rateUsd'],
                         "source": "kestra-doker",
                         "timestamp": timestamp
-                    }),
+                    },
                     "key": rate['id']  # Using 'id' as the key, but you can choose another field
                 }
                 records.append(message)

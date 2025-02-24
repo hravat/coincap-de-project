@@ -1,0 +1,16 @@
+id: consume-kafka-messages
+namespace: company.team
+tasks:
+  - id: log
+    type: io.kestra.plugin.core.log.Log
+    message: "{{ trigger.value }}"
+  
+triggers:
+  - id: realtime_trigger
+    type: io.kestra.plugin.kafka.RealtimeTrigger
+    topic: test-topic
+    properties:
+      bootstrap.servers: broker:29092
+    serdeProperties:
+      valueDeserializer: STRING
+    groupId: kestraConsumer

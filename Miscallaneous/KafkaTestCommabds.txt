@@ -16,7 +16,7 @@ docker exec -it broker kafka-console-consumer \
 
 ### KAFKA PRODUCER
 docker exec -it broker kafka-console-producer \
---broker-list kafka:9092 \
+--broker-list broker:9092 \
 --topic test-topic
 
 ### LIST KAFKA TOPICS
