@@ -10,6 +10,6 @@
 #done
 #
 ## Start Flink SQL Client
-exec ${FLINK_HOME}/bin/sql-client.sh  -i /opt/flink/sql-scripts/rates_api.sql -l ${SQL_CLIENT_HOME}/lib
+exec ${FLINK_HOME}/bin/sql-client.sh  -i /opt/flink/sql-scripts/init.sql -l ${SQL_CLIENT_HOME}/lib
 #
-${FLINK_HOME}/bin/sql-client.sh -f "/opt/flink/sql-scripts/rates_api.sql"
+#${FLINK_HOME}/bin/sql-client.sh -f "/opt/flink/sql-scripts/rates_api.sql"

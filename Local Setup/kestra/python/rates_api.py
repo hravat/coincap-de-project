@@ -15,18 +15,22 @@ def fetch_and_send_rates_to_kafka():
         response.raise_for_status()  # Raise an error for bad responses (4xx, 5xx)
         data = response.json()
         
+        
+        local_tz = datetime.now().astimezone().tzinfo 
+        
+        
         if "data" in data:
             records = []
             for rate in data["data"]:
                 # Construct the message to send to Kafka with the required data
-                timestamp = datetime.utcnow().isoformat()
+                timestamp = datetime.now(local_tz).strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
                 message = {
                     "value": {
                         "id": rate['id'],
                         "symbol": rate['symbol'],
                         "rateUsd": rate['rateUsd'],
                         "source": "kestra-doker",
-                        "timestamp": timestamp
+                        "event_timestamp": timestamp
                     },
                     "key": rate['id']  # Using 'id' as the key, but you can choose another field
                 }

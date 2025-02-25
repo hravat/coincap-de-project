@@ -9,7 +9,7 @@ CREATE TABLE kafka_source (
     symbol STRING,
     rateUsd STRING,  
     source STRING,
-    times_tamp STRING
+    event_timestamp STRING
 ) WITH (
     'connector' = 'kafka',
     'topic' = 'test-topic',
@@ -27,3 +27,11 @@ curl -X POST \
      -H "Content-Type: application/json" \
      -d @setup.sql \
      http://localhost:8081/v1/sql/queries
+
+
+SELECT symbol,event_timestamp FROM rates_api_raw;
+
+---CHECK DATA IN POSTGRES
+SELECT id, symbol, rateusd, "source", 
+       event_timestamp AT TIME ZONE 'UTC' AT TIME ZONE 'Pacific/Auckland' AS event_timestamp_nzt
+FROM public.rates_api_raw;
