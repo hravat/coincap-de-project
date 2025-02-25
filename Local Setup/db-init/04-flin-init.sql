@@ -24,10 +24,3 @@ GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO flinkuser;
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON TABLES TO flinkuser;
 
 
-CREATE TABLE public.rates_api_raw (
-    id VARCHAR(255),
-    symbol VARCHAR(255),
-    rateUsd VARCHAR(255),
-    source VARCHAR(255),
-    event_timestamp TIMESTAMP
-);

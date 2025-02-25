@@ -1,0 +1,46 @@
+docker exec -it dbt_container bash   # Access the container
+
+dbt run --project-dir /usr/app/test_project
+
+dbt init --project-dir /usr/app/coincap_rate_api 
+dbt debug --project-dir /usr/app/coincap_rate_api 
+
+
+WITH source_data AS (
+    SELECT
+        id,
+        symbol,
+        event_timestamp,
+        ROW_NUMBER() OVER (PARTITION BY id ORDER BY event_timestamp DESC) AS seq_num
+    FROM coincap_stg.rates_api_raw
+)
+
+-- Only select the latest row for each `id` (partitioned and ordered by `event_timestamp`)
+, final_data AS (
+    SELECT 
+        id,
+        symbol,
+        nextval('coincap_stg.rate_sr_key_sequence') AS rate_sr_key,
+        CURRENT_TIMESTAMP AS insert_time,  -- Set insert_time for inserts
+        CURRENT_TIMESTAMP AS update_time,  -- Set update_time for both insert and update
+        'Y' AS active_flag                -- Set active_flag to TRUE for inserts
+    FROM source_data
+    WHERE seq_num = 1
+)
+
+-- MERGE statement for upsert
+MERGE INTO coincap_stg.dim_rates 
+USING final_data AS source
+ON coincap_stg.dim_rates.id = source.id
+WHEN MATCHED THEN
+    UPDATE SET 
+        symbol = source.symbol,
+        rate_sr_key = source.rate_sr_key,
+        update_time = source.update_time,  -- Update the `update_time`
+        active_flag = source.active_flag
+WHEN NOT MATCHED THEN
+    INSERT (id, symbol, rate_sr_key, insert_time, update_time, active_flag)
+    VALUES (source.id, source.symbol, source.rate_sr_key, source.insert_time, source.update_time, source.active_flag);
+
+
+

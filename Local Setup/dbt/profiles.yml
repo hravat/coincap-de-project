@@ -1,3 +1,15 @@
+coincap_rate_api:
+  outputs:
+    dev:
+      dbname: coincap_dwh
+      host: postgres_db
+      pass: coincap_password
+      port: 5432
+      schema: coincap_stg
+      threads: 1
+      type: postgres
+      user: coincap_user
+  target: dev
 test_project:
   outputs:
     dev:

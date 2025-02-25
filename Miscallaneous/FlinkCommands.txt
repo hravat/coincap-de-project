@@ -32,6 +32,11 @@ curl -X POST \
 SELECT symbol,event_timestamp FROM rates_api_raw;
 
 ---CHECK DATA IN POSTGRES
-SELECT id, symbol, rateusd, "source", 
-       event_timestamp AT TIME ZONE 'UTC' AT TIME ZONE 'Pacific/Auckland' AS event_timestamp_nzt
-FROM public.rates_api_raw;
+select
+	id,
+	symbol,
+	rateusd,
+	"source",
+	event_timestamp at TIME zone 'UTC' at TIME zone 'Pacific/Auckland' as event_timestamp_nzt
+from
+	coincap_stg.rates_api_raw;

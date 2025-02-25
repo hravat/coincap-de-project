@@ -38,10 +38,10 @@ CREATE TABLE rates_api_raw_postgres_sink (
         event_timestamp TIMESTAMP(3)
     ) WITH (
         'connector' = 'jdbc',                                      -- Specifies the connector type as JDBC
-        'url' = 'jdbc:postgresql://postgres_db:5432/flink',   -- PostgreSQL connection URL
-        'table-name' = 'public.rates_api_raw',                            -- Target table in PostgreSQL
-        'username' = 'flinkuser',                                    -- PostgreSQL username
-        'password' = 'flinkpassword',                                -- PostgreSQL password
+        'url' = 'jdbc:postgresql://postgres_db:5432/coincap_dwh',   -- PostgreSQL connection URL
+        'table-name' = 'COINCAP_STG.rates_api_raw',                            -- Target table in PostgreSQL
+        'username' = 'coincap_user',                                    -- PostgreSQL username
+        'password' = 'coincap_password',                                -- PostgreSQL password
         'sink.buffer-flush.max-rows' = '1000',                        -- Number of rows to buffer before flushing to PostgreSQL
         'sink.buffer-flush.interval' = '2s'   
     -- Interval for flushing the buffered data (2 seconds in this case)

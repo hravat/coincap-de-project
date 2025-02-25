@@ -316,7 +316,7 @@ services:
     depends_on:
       - postgres_db
     volumes:
-      - ./dbt_project/test_project:/usr/app/test_project
+      - ./dbt_project:/usr/app
       - ./dbt:/root/.dbt
     working_dir: /usr/app
     entrypoint: ["tail", "-f", "/dev/null"]
