@@ -1,5 +1,5 @@
 id: consume-kafka-messages
-namespace: company.team
+namespace: api_flows
 tasks:
   - id: log
     type: io.kestra.plugin.core.log.Log

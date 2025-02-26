@@ -1,0 +1,11 @@
+id: dbt_run
+namespace: dbt_project
+
+tasks:
+  - id: run_dbt
+    type: io.kestra.plugin.dbt.cli.Run
+    namespaceFiles:
+      enabled: true # ✅ Maps namespace files inside the container
+    profiles: "/path/to/dbt/profiles"
+    projectDir: "/path/to/dbt/project"
+

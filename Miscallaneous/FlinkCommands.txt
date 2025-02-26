@@ -40,3 +40,4 @@ select
 	event_timestamp at TIME zone 'UTC' at TIME zone 'Pacific/Auckland' as event_timestamp_nzt
 from
 	coincap_stg.rates_api_raw;
+    order by event_timestamp desc;
