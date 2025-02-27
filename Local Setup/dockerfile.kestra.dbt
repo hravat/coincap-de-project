@@ -1,0 +1,18 @@
+FROM ghcr.io/dbt-labs/dbt-postgres:latest
+
+
+# Set the working directory inside the container
+WORKDIR /usr/app
+
+# Copy DBT projects into the container
+COPY ./dbt_project /usr/app/dbt_project
+
+# Copy the DBT profiles into the containers
+COPY ./dbt /root/.dbt
+
+# Set environment variable for DBT profiles
+ENV DBT_PROFILES_DIR="/root/.dbt"
+
+# Set default entrypoint (for debugging)
+ENTRYPOINT ["tail", "-f", "/dev/null"]
+

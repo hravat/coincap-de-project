@@ -1,5 +1,5 @@
 id: python_workflow
-namespace: api_flows
+namespace: coincap.api_flows
 
 triggers:
   - id: schedule
@@ -15,7 +15,8 @@ tasks:
     taskRunner:
       type: io.kestra.plugin.scripts.runner.docker.Docker
       pullPolicy: NEVER # ⚡️ Use the local image instead of pulling it from DockerHub
-    containerImage: kestra-custom:latest 
+#    containerImage: kestra-custom:latest 
+    containerImage: kestra-python-image:latest
     warningOnStdErr: false
 #    beforeCommands:
 #      - pip install requests

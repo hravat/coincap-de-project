@@ -4,7 +4,10 @@ dbt run --project-dir /usr/app/test_project
 
 dbt init --project-dir /usr/app/coincap_rate_api 
 dbt debug --project-dir /usr/app/coincap_rate_api 
+dbt debug --project-dir /usr/app/dbt_project/coincap_rate_api 
 
+dbt run --project-dir /usr/app/coincap_rate_api
+dbt run --project-dir /usr/app/coincap_rate_api --select archive
 
 WITH source_data AS (
     SELECT

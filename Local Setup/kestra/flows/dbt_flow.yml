@@ -1,11 +1,18 @@
 id: dbt_run
-namespace: dbt_project
+namespace: coincap.dbt_project
 
 tasks:
   - id: run_dbt
-    type: io.kestra.plugin.dbt.cli.Run
-    namespaceFiles:
-      enabled: true # ✅ Maps namespace files inside the container
-    profiles: "/path/to/dbt/profiles"
-    projectDir: "/path/to/dbt/project"
+    type: io.kestra.plugin.dbt.cli.DbtCLI
+    commands:
+      - dbt run --project-dir /usr/app/dbt_project/coincap_rate_api --select dimension
+    taskRunner:
+        type: io.kestra.plugin.scripts.runner.docker.Docker
+        pullPolicy: NEVER # ⚡️ Use the local image instead of pulling it from DockerHub
+    containerImage: kestra-dbt-image:latest   
 
+
+triggers:
+  - id: schedule_dbt_run
+    type: io.kestra.core.models.triggers.types.Schedule
+    cron: "*/1 * * * *"

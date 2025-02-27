@@ -2,7 +2,7 @@ coincap_rate_api:
   outputs:
     dev:
       dbname: coincap_dwh
-      host: postgres_db
+      host: host.docker.internal
       pass: coincap_password
       port: 5432
       schema: coincap_stg
