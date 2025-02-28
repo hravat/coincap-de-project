@@ -392,7 +392,7 @@ services:
                 path: /tmp/kestra-wd/tmp
             url: http://kestra:8085/
             KAFKA_BOOTSTRAP_SERVERS: broker:29092 
-            SECRET_DWH_STG_PASSWORD: Y29pbmNhcF9wYXNzd29yZA==
+        SECRET_DWH_STG_PASSWORD: ${KESTRA_SECRET_DWH_DB_PASSWORD}
       ports:
         - "8085:8080"
         - "8086:8081"
