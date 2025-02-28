@@ -6,11 +6,13 @@ tasks:
     type: io.kestra.plugin.dbt.cli.DbtCLI
     commands:
       - dbt run --project-dir /usr/app/dbt_project/coincap_rate_api --select dimension
+      - dbt run --project-dir /usr/app/dbt_project/coincap_rate_api --select fact
     taskRunner:
         type: io.kestra.plugin.scripts.runner.docker.Docker
         pullPolicy: NEVER # ⚡️ Use the local image instead of pulling it from DockerHub
     containerImage: kestra-dbt-image:latest   
-
+    env:
+        DWH_STG_PASSWORD: "{{ secret('DWH_STG_PASSWORD') }}"
 
 triggers:
   - id: schedule_dbt_run

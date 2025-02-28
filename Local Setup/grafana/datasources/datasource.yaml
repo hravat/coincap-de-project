@@ -4,11 +4,11 @@ datasources:
   - name: CoinCap
     type: postgres
     url: postgres_db:5432
-    user: postgres
+    user: coincap_user
     secureJsonData:
-      password: 'postgres'
+      password: 'coincap_password'
     jsonData:
-      database: postgres
+      database: coincap_dwh
       sslmode: 'disable' # disable/require/verify-ca/verify-full
       maxOpenConns: 100
       maxIdleConns: 100

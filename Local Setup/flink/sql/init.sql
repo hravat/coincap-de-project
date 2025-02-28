@@ -21,7 +21,7 @@ CREATE TABLE rates_api_raw (
     event_timestamp TIMESTAMP(3)
 ) WITH (
     'connector' = 'kafka',
-    'topic' = 'test-topic',
+    'topic' = 'rates-api',
     'properties.bootstrap.servers' = 'broker:29092',
     'properties.group.id' = 'flink-consumer',
     'scan.startup.mode' = 'latest-offset',

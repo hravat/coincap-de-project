@@ -57,6 +57,27 @@ CREATE TABLE COINCAP_STG.rates_api_raw_archive (
     event_timestamp TIMESTAMP
 );
 
+CREATE TABLE coincap_prod.dim_rates (
+	rate_sr_key int8 NULL,
+	id varchar(255) NULL,
+	symbol varchar(255) NULL,
+	insert_time timestamptz NULL,
+	update_time timestamptz NULL,
+	active_flag text NULL,
+	event_timestamp timestamp NULL
+);
+
+CREATE TABLE coincap_prod.fact_rates (
+	rate_sr_key int8 NULL,
+	event_timestamp timestamp NULL,
+	rateusd varchar(255) NULL,
+	insert_time timestamptz NULL,
+	update_time timestamptz NULL,
+	active_flag text NULL
+);
+
 CREATE SEQUENCE coincap_stg.rate_sr_key_sequence
 START 1
 INCREMENT BY 1;
+
+

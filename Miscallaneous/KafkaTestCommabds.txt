@@ -12,7 +12,7 @@ docker exec -it kafka kafka-topics --create \
 ### KAFKA CONSUMER
 docker exec -it broker kafka-console-consumer \
 --bootstrap-server broker:9092 \
---topic test-topic --from-beginning
+--topic rates-api --from-beginning
 
 ### KAFKA PRODUCER
 docker exec -it broker kafka-console-producer \

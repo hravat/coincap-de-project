@@ -4,7 +4,7 @@ from datetime import datetime
 
 API_URL = "https://api.coincap.io/v2/rates"
 KAFKA_REST_PROXY_URL = "http://host.docker.internal:8082"  # Replace with the actual REST Proxy URL
-KAFKA_TOPIC = "test-topic"
+KAFKA_TOPIC = "rates-api"
 
 
 ###TEST COMMENT TO SEE IF FILE IS BEING PICKED BY KESTRA  

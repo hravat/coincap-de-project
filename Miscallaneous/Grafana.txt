@@ -1,0 +1,21 @@
+WITH top_rates AS (
+    SELECT 
+        rate_sr_key,
+        ROW_NUMBER() OVER (ORDER BY MAX(CAST(rateusd AS FLOAT)) DESC) AS row_num		
+    FROM coincap_prod.fact_rates
+    GROUP BY rate_sr_key
+    ORDER BY MAX(CAST(rateusd AS FLOAT)) DESC
+    LIMIT 5
+)
+SELECT 
+    d.id,
+    AVG(CAST(f.rateusd AS FLOAT)) AS "Average Value",
+    DATE_TRUNC('minute', f.event_timestamp) AS event_timestamp_minute
+FROM coincap_prod.fact_rates f
+LEFT JOIN coincap_prod.dim_rates d 
+    ON f.rate_sr_key = d.rate_sr_key  
+LEFT JOIN top_rates t 
+    ON f.rate_sr_key = t.rate_sr_key  
+WHERE t.row_num = 5
+GROUP BY event_timestamp_minute, d.id 
+ORDER BY event_timestamp_minute;
