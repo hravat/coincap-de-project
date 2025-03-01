@@ -1,0 +1,56 @@
+// Table: dim_date
+Table dim_date {
+  date_sr_key int [null]
+  full_date timestamptz [null]
+  day_of_week text [null]
+  day_of_week_num numeric [null]
+  day_of_month numeric [null]
+  day_of_year numeric [null]
+  week_of_year numeric [null]
+  month_name text [null]
+  month_num numeric [null]
+  quarter numeric [null]
+  year numeric [null]
+}
+
+// Table: dim_rates
+Table dim_rates {
+  rate_sr_key int8 [null]
+  id varchar(255) [null]
+  symbol varchar(255) [null]
+  insert_time timestamptz [null]
+  update_time timestamptz [null]
+  active_flag text [null]
+  event_timestamp timestamp [null]
+}
+
+// Table: dim_time
+Table dim_time {
+  time_sr_key text [null]
+  full_time timestamp [null]
+  hour numeric [null]
+  minute numeric [null]
+  second numeric [null]
+  am_pm text [null]
+  hour_12 numeric [null]
+  is_morning bool [null]
+  is_afternoon bool [null]
+  is_noon bool [null]
+  is_midnight bool [null]
+}
+
+// Table: fact_rates
+Table fact_rates {
+  rate_sr_key int8 [null]
+  date_sr_key int8 [null]
+  event_timestamp timestamp [null]
+  rateusd numeric(10, 3) [null]
+  insert_time timestamptz [null]
+  update_time timestamptz [null]
+  active_flag text [null]
+  time_sr_key varchar(256) [null]
+}
+
+Ref: fact_rates.date_sr_key > dim_date.date_sr_key
+Ref: fact_rates.time_sr_key > dim_time.time_sr_key
+Ref: fact_rates.rate_sr_key > dim_rates.rate_sr_key
