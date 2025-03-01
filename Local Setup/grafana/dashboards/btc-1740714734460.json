@@ -29,117 +29,6 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "green",
-            "mode": "fixed"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 100,
-            "gradientMode": "opacity",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 8
-      },
-      "id": 2,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.5.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "grafana-postgresql-datasource",
-            "uid": "PAEFA1ED0F50C7036"
-          },
-          "editorMode": "code",
-          "format": "table",
-          "rawQuery": true,
-          "rawSql": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(CAST(rateusd AS FLOAT)) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    GROUP BY rate_sr_key\n    ORDER BY MAX(CAST(rateusd AS FLOAT)) DESC\n    LIMIT 5\n)\nSELECT \n    d.id,\n    AVG(CAST(f.rateusd AS FLOAT)) AS \"Average Value\",\n    DATE_TRUNC('minute', f.event_timestamp) AS event_timestamp_minute\nFROM coincap_prod.fact_rates f\nLEFT JOIN coincap_prod.dim_rates d \n    ON f.rate_sr_key = d.rate_sr_key  \nLEFT JOIN top_rates t \n    ON f.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 5\nGROUP BY event_timestamp_minute, d.id \nORDER BY event_timestamp_minute;\n",
-          "refId": "A",
-          "sql": {
-            "columns": [
-              {
-                "parameters": [],
-                "type": "function"
-              }
-            ],
-            "groupBy": [
-              {
-                "property": {
-                  "type": "string"
-                },
-                "type": "groupBy"
-              }
-            ],
-            "limit": 50
-          }
-        }
-      ],
-      "title": "Ethereum",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "grafana-postgresql-datasource",
-        "uid": "PAEFA1ED0F50C7036"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
             "fixedColor": "red",
             "mode": "fixed"
           },
@@ -223,7 +112,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(CAST(rateusd AS FLOAT)) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    GROUP BY rate_sr_key\n    ORDER BY MAX(CAST(rateusd AS FLOAT)) DESC\n    LIMIT 5\n)\nSELECT \n    d.id,\n    AVG(CAST(f.rateusd AS FLOAT)) AS \"Average Value\",\n    DATE_TRUNC('minute', f.event_timestamp) AS event_timestamp_minute\nFROM coincap_prod.fact_rates f\nLEFT JOIN coincap_prod.dim_rates d \n    ON f.rate_sr_key = d.rate_sr_key  \nLEFT JOIN top_rates t \n    ON f.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 1\nGROUP BY event_timestamp_minute, d.id \nORDER BY event_timestamp_minute;\n",
+          "rawSql": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT \n    d.id,\n    AVG(f.rateusd) AS \"Average Value\",\n    DATE_TRUNC('minute', f.event_timestamp) AS event_timestamp_minute\nFROM coincap_prod.fact_rates f\nLEFT JOIN coincap_prod.dim_rates d \n    ON f.rate_sr_key = d.rate_sr_key  \nLEFT JOIN top_rates t \n    ON f.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 1\nGROUP BY event_timestamp_minute, d.id \nORDER BY event_timestamp_minute;\n",
           "refId": "A",
           "sql": {
             "columns": [
@@ -334,7 +223,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(CAST(rateusd AS FLOAT)) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    GROUP BY rate_sr_key\n    ORDER BY MAX(CAST(rateusd AS FLOAT)) DESC\n    LIMIT 5\n)\nSELECT \n    d.id,\n    AVG(CAST(f.rateusd AS FLOAT)) AS \"Average Value\",\n    DATE_TRUNC('minute', f.event_timestamp) AS event_timestamp_minute\nFROM coincap_prod.fact_rates f\nLEFT JOIN coincap_prod.dim_rates d \n    ON f.rate_sr_key = d.rate_sr_key  \nLEFT JOIN top_rates t \n    ON f.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 2\nGROUP BY event_timestamp_minute, d.id \nORDER BY event_timestamp_minute;\n",
+          "rawSql": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT \n    d.id,\n    AVG(f.rateusd) AS \"Average Value\",\n    DATE_TRUNC('minute', f.event_timestamp) AS event_timestamp_minute\nFROM coincap_prod.fact_rates f\nLEFT JOIN coincap_prod.dim_rates d \n    ON f.rate_sr_key = d.rate_sr_key  \nLEFT JOIN top_rates t \n    ON f.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 2\nGROUP BY event_timestamp_minute, d.id \nORDER BY event_timestamp_minute;\n",
           "refId": "A",
           "sql": {
             "columns": [
@@ -356,6 +245,117 @@
         }
       ],
       "title": "wrapped-bitcoin",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "PAEFA1ED0F50C7036"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "PAEFA1ED0F50C7036"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT \n    d.id,\n    AVG(f.rateusd) AS \"Average Value\",\n    DATE_TRUNC('minute', f.event_timestamp) AS event_timestamp_minute\nFROM coincap_prod.fact_rates f\nLEFT JOIN coincap_prod.dim_rates d \n    ON f.rate_sr_key = d.rate_sr_key  \nLEFT JOIN top_rates t \n    ON f.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 3\nGROUP BY event_timestamp_minute, d.id \nORDER BY event_timestamp_minute;\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Ethereum",
       "type": "timeseries"
     },
     {
@@ -421,7 +421,7 @@
         "x": 12,
         "y": 8
       },
-      "id": 3,
+      "id": 4,
       "options": {
         "legend": {
           "calcs": [],
@@ -445,7 +445,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(CAST(rateusd AS FLOAT)) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    GROUP BY rate_sr_key\n    ORDER BY MAX(CAST(rateusd AS FLOAT)) DESC\n    LIMIT 5\n)\nSELECT \n    d.id,\n    AVG(CAST(f.rateusd AS FLOAT)) AS \"Average Value\",\n    DATE_TRUNC('minute', f.event_timestamp) AS event_timestamp_minute\nFROM coincap_prod.fact_rates f\nLEFT JOIN coincap_prod.dim_rates d \n    ON f.rate_sr_key = d.rate_sr_key  \nLEFT JOIN top_rates t \n    ON f.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 4\nGROUP BY event_timestamp_minute, d.id \nORDER BY event_timestamp_minute;\n",
+          "rawSql": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT \n    d.id,\n    AVG(f.rateusd) AS \"Average Value\",\n    DATE_TRUNC('minute', f.event_timestamp) AS event_timestamp_minute\nFROM coincap_prod.fact_rates f\nLEFT JOIN coincap_prod.dim_rates d \n    ON f.rate_sr_key = d.rate_sr_key  \nLEFT JOIN top_rates t \n    ON f.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 4\nGROUP BY event_timestamp_minute, d.id \nORDER BY event_timestamp_minute;\n",
           "refId": "A",
           "sql": {
             "columns": [
@@ -485,6 +485,6 @@
   "timezone": "browser",
   "title": "btc",
   "uid": "ceedz22hkpla8a",
-  "version": 13,
+  "version": 19,
   "weekStart": ""
 }

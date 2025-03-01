@@ -10,6 +10,8 @@ config(
 WITH source_data AS (
     SELECT 
         d.rate_sr_key,
+        to_char(r.event_timestamp, 'YYYYMMDD')::integer date_sr_key, 
+        to_char(r.event_timestamp, 'HH24MISS') time_sr_key,
         r.event_timestamp,           -- From raw data
         r.rateUsd,
         CURRENT_TIMESTAMP AS insert_time,  
