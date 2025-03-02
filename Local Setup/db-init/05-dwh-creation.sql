@@ -44,6 +44,7 @@ CREATE TABLE COINCAP_STG.rates_api_raw (
     id VARCHAR(255),
     symbol VARCHAR(255),
     rateUsd NUMERIC(10,3),
+    type varchar(255) NULL,
     source VARCHAR(255),
     event_timestamp TIMESTAMP
 );
@@ -53,6 +54,7 @@ CREATE TABLE COINCAP_STG.rates_api_raw_archive (
     id VARCHAR(255),
     symbol VARCHAR(255),
     rateUsd NUMERIC(10,3),
+    type varchar(255) NULL,
     source VARCHAR(255),
     event_timestamp TIMESTAMP
 );
@@ -61,6 +63,7 @@ CREATE TABLE coincap_prod.dim_rates (
 	rate_sr_key int8 NULL,
 	id varchar(255) NULL,
 	symbol varchar(255) NULL,
+    type varchar(255) NULL,
 	insert_time timestamptz NULL,
 	update_time timestamptz NULL,
 	active_flag text NULL,

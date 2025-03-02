@@ -29,6 +29,7 @@ def fetch_and_send_rates_to_kafka():
                         "id": rate['id'],
                         "symbol": rate['symbol'],
                         "rateUsd": rate['rateUsd'],
+                        "type": rate['type'],
                         "source": "kestra-doker",
                         "event_timestamp": timestamp
                     },

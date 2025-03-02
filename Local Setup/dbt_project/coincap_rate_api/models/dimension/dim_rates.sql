@@ -12,6 +12,7 @@ WITH source_data AS (
     SELECT 
         id, 
         symbol, 
+        type,
         event_timestamp,
         CURRENT_TIMESTAMP AS insert_time,  
         CURRENT_TIMESTAMP AS update_time,  
@@ -24,6 +25,7 @@ SELECT
     nextval('coincap_stg.rate_sr_key_sequence') AS rate_sr_key,
     source_data.id,
     source_data.symbol,
+    source_data.type,
     source_data.insert_time,
     source_data.update_time,
     source_data.active_flag,

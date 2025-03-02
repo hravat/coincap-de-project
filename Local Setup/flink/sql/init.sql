@@ -17,6 +17,7 @@ CREATE TABLE rates_api_raw (
     id STRING,
     symbol STRING,
     rateUsd DECIMAL(10,3),  
+    type STRING,
     source STRING,
     event_timestamp TIMESTAMP(3)
 ) WITH (
@@ -34,6 +35,7 @@ CREATE TABLE rates_api_raw_postgres_sink (
         id STRING,
         symbol STRING,
         rateUsd DECIMAL(10,3),
+        type STRING,
         source STRING,
         event_timestamp TIMESTAMP(3)
     ) WITH (
