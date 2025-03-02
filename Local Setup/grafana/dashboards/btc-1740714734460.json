@@ -29,6 +29,147 @@
       "fieldConfig": {
         "defaults": {
           "color": {
+            "fixedColor": "purple",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "PAEFA1ED0F50C7036"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n    d.id,\n    AVG(f.rateusd) AS \"Average Value\",\n    DATE_TRUNC('minute', f.event_timestamp) AS event_timestamp_minute\nFROM coincap_prod.fact_rates f\nLEFT JOIN coincap_prod.dim_rates d \n    ON f.rate_sr_key = d.rate_sr_key   \nWHERE UPPER(d.id) = '${crypto_any}' \nGROUP BY event_timestamp_minute, d.id \nORDER BY event_timestamp_minute;\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "${crypto_any}",
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 6,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "# Top 4 Cryptocurrencies",
+        "mode": "markdown"
+      },
+      "pluginVersion": "11.5.2",
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "PAEFA1ED0F50C7036"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
             "fixedColor": "red",
             "mode": "fixed"
           },
@@ -86,7 +227,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 0
+        "y": 10
       },
       "id": 1,
       "options": {
@@ -133,7 +274,7 @@
           }
         }
       ],
-      "title": "Bitcoin",
+      "title": "${crypto_1}",
       "type": "timeseries"
     },
     {
@@ -197,7 +338,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 0
+        "y": 10
       },
       "id": 3,
       "options": {
@@ -244,7 +385,7 @@
           }
         }
       ],
-      "title": "wrapped-bitcoin",
+      "title": "${crypto_2}",
       "type": "timeseries"
     },
     {
@@ -308,7 +449,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 8
+        "y": 18
       },
       "id": 2,
       "options": {
@@ -355,7 +496,7 @@
           }
         }
       ],
-      "title": "Ethereum",
+      "title": "${crypto_3}",
       "type": "timeseries"
     },
     {
@@ -419,7 +560,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 8
+        "y": 18
       },
       "id": 4,
       "options": {
@@ -466,7 +607,7 @@
           }
         }
       ],
-      "title": "gold-ounce",
+      "title": "${crypto_4}",
       "type": "timeseries"
     }
   ],
@@ -475,7 +616,105 @@
   "schemaVersion": 40,
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allowCustomValue": false,
+        "current": {
+          "text": "YEARN-FINANCE",
+          "value": "YEARN-FINANCE"
+        },
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "PAEFA1ED0F50C7036"
+        },
+        "definition": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.id) \nFROM coincap_prod.dim_rates d\nJOIN top_rates t \n    ON d.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 3;\n",
+        "hide": 2,
+        "label": "crypto_3",
+        "name": "crypto_3",
+        "options": [],
+        "query": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.id) \nFROM coincap_prod.dim_rates d\nJOIN top_rates t \n    ON d.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 3;\n",
+        "refresh": 2,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "allowCustomValue": false,
+        "current": {
+          "text": "BITCOIN",
+          "value": "BITCOIN"
+        },
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "PAEFA1ED0F50C7036"
+        },
+        "definition": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.id) \nFROM coincap_prod.dim_rates d\nJOIN top_rates t \n    ON d.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 1;\n",
+        "hide": 2,
+        "label": "crypto_1",
+        "name": "crypto_1",
+        "options": [],
+        "query": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.id) \nFROM coincap_prod.dim_rates d\nJOIN top_rates t \n    ON d.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 1;\n",
+        "refresh": 2,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "WRAPPED-BITCOIN",
+          "value": "WRAPPED-BITCOIN"
+        },
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "PAEFA1ED0F50C7036"
+        },
+        "definition": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.id) \nFROM coincap_prod.dim_rates d\nJOIN top_rates t \n    ON d.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 2;\n",
+        "hide": 2,
+        "label": "crypto_2",
+        "name": "crypto_2",
+        "options": [],
+        "query": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.id) \nFROM coincap_prod.dim_rates d\nJOIN top_rates t \n    ON d.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 2;\n",
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "GOLD-OUNCE",
+          "value": "GOLD-OUNCE"
+        },
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "PAEFA1ED0F50C7036"
+        },
+        "definition": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.id) \nFROM coincap_prod.dim_rates d\nJOIN top_rates t \n    ON d.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 4;\n",
+        "hide": 2,
+        "label": "crypto_4",
+        "name": "crypto_4",
+        "options": [],
+        "query": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.id) \nFROM coincap_prod.dim_rates d\nJOIN top_rates t \n    ON d.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 4;\n",
+        "refresh": 2,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "allowCustomValue": false,
+        "current": {
+          "text": "GOLD-OUNCE",
+          "value": "GOLD-OUNCE"
+        },
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "PAEFA1ED0F50C7036"
+        },
+        "definition": "SELECT UPPER(d.id) \nFROM coincap_prod.dim_rates d\norder by d.id ",
+        "label": "Select Crypto ",
+        "name": "crypto_any",
+        "options": [],
+        "query": "SELECT UPPER(d.id) \nFROM coincap_prod.dim_rates d\norder by d.id ",
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      }
+    ]
   },
   "time": {
     "from": "now-1h",
@@ -485,6 +724,6 @@
   "timezone": "browser",
   "title": "btc",
   "uid": "ceedz22hkpla8a",
-  "version": 19,
+  "version": 23,
   "weekStart": ""
 }
