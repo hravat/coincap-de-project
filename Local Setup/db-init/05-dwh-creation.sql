@@ -59,23 +59,23 @@ CREATE TABLE COINCAP_STG.rates_api_raw_archive (
     event_timestamp TIMESTAMP
 );
 
-CREATE TABLE coincap_prod.dim_rates (
-	rate_sr_key int8 NULL,
-	id varchar(255) NULL,
-	symbol varchar(255) NULL,
-    type varchar(255) NULL,
+CREATE TABLE coincap_prod.DIM_CURRENCY_RATE (
+	CURRENCY_SR_KEY int8 NULL,
+	CURRENCY_ID varchar(255) NULL,
+	CURRENCY_SYMBOL varchar(255) NULL,
+    CURRENCY_TYPE varchar(255) NULL,
 	insert_time timestamptz NULL,
 	update_time timestamptz NULL,
 	active_flag text NULL,
 	event_timestamp timestamp NULL
 );
 
-CREATE TABLE coincap_prod.fact_rates (
-	rate_sr_key int8 NULL,
+CREATE TABLE coincap_prod.FACT_CURRENCY_RATE (
+	CURRENCY_SR_KEY int8 NULL,
     date_sr_key int8 NULL,
     time_sr_key varchar(8) NULL,
 	event_timestamp timestamp NULL,
-	rateusd NUMERIC(10,3) NULL,
+	CURRENNCY_RATE_IN_USD NUMERIC(10,3) NULL,
 	insert_time timestamptz NULL,
 	update_time timestamptz NULL,
 	active_flag text NULL

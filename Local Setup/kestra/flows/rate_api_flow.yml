@@ -1,4 +1,4 @@
-id: python_workflow
+id: rates_api_workflow
 namespace: coincap.api_flows
 
 triggers:
@@ -8,7 +8,7 @@ triggers:
 
 
 tasks:
-  - id: run_python_script
+  - id: run_rate_api_python_script
     type: io.kestra.plugin.scripts.python.Commands
     namespaceFiles:
       enabled: true

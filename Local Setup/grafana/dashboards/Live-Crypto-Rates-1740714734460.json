@@ -112,7 +112,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT \n    d.id,\n    AVG(f.rateusd) AS \"Average Value\",\n    DATE_TRUNC('minute', f.event_timestamp) AS event_timestamp_minute\nFROM coincap_prod.fact_rates f\nLEFT JOIN coincap_prod.dim_rates d \n    ON f.rate_sr_key = d.rate_sr_key   \nWHERE UPPER(d.id) = '${crypto_any}' \nGROUP BY event_timestamp_minute, d.id \nORDER BY event_timestamp_minute;\n",
+          "rawSql": "SELECT \n    d.CURRENCY_id,\n    AVG(f.currenncy_rate_in_usd) AS \"Average Value\",\n    DATE_TRUNC('minute', f.event_timestamp) AS event_timestamp_minute\nFROM coincap_prod.fact_currency_rate  f\nINNER JOIN coincap_prod.dim_currency_rate  d \n    ON f.currency_sr_key  = d.currency_sr_key   \nWHERE UPPER(d.CURRENCY_id) = '${crypto_any}' \nGROUP BY event_timestamp_minute, d.CURRENCY_id \nORDER BY event_timestamp_minute;\n",
           "refId": "A",
           "sql": {
             "columns": [
@@ -253,7 +253,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    where rate_sr_key  in (select rate_sr_key \n    \t\t\t\t\t   from coincap_prod.dim_rates dr \n    \t\t\t\t\t   where dr.type = 'crypto'\n    \t\t\t\t\t   )\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT \n    d.id,\n    AVG(f.rateusd) AS \"Average Value\",\n    DATE_TRUNC('minute', f.event_timestamp) AS event_timestamp_minute\nFROM coincap_prod.fact_rates f\nINNER JOIN top_rates t \n    ON f.rate_sr_key = t.rate_sr_key  \nINNER JOIN coincap_prod.dim_rates d \n    ON f.rate_sr_key = d.rate_sr_key  \nWHERE t.row_num = 1\nGROUP BY event_timestamp_minute, d.id \nORDER BY event_timestamp_minute;",
+          "rawSql": "WITH top_rates AS (\n    SELECT \n        CURRENCY_SR_KEY,\n        ROW_NUMBER() OVER (ORDER BY MAX(currenncy_rate_in_usd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_currency_rate\n    where CURRENCY_SR_KEY  in (select CURRENCY_SR_KEY \n    \t\t\t\t\t   from coincap_prod.dim_currency_rate dr \n    \t\t\t\t\t   where dr.currency_type  = 'crypto'\n    \t\t\t\t\t   )\n    GROUP BY CURRENCY_SR_KEY\n    ORDER BY MAX(currenncy_rate_in_usd) DESC\n    LIMIT 5\n)\nSELECT \n    d.currency_id,\n    AVG(f.currenncy_rate_in_usd) AS \"Average Value\",\n    DATE_TRUNC('minute', f.event_timestamp) AS event_timestamp_minute\nFROM coincap_prod.fact_currency_rate   f\nINNER JOIN top_rates t \n    ON f.CURRENCY_SR_KEY = t.CURRENCY_SR_KEY  \nINNER JOIN coincap_prod.dim_currency_rate d \n    ON f.CURRENCY_SR_KEY = d.CURRENCY_SR_KEY  \nWHERE t.row_num = 1\nGROUP BY event_timestamp_minute, d.currency_id \nORDER BY event_timestamp_minute;\n",
           "refId": "A",
           "sql": {
             "columns": [
@@ -364,7 +364,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    where rate_sr_key  in (select rate_sr_key \n    \t\t\t\t\t   from coincap_prod.dim_rates dr \n    \t\t\t\t\t   where dr.type = 'crypto'\n    \t\t\t\t\t   )\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT \n    d.id,\n    AVG(f.rateusd) AS \"Average Value\",\n    DATE_TRUNC('minute', f.event_timestamp) AS event_timestamp_minute\nFROM coincap_prod.fact_rates f\nINNER JOIN top_rates t \n    ON f.rate_sr_key = t.rate_sr_key  \nINNER JOIN coincap_prod.dim_rates d \n    ON f.rate_sr_key = d.rate_sr_key  \nWHERE t.row_num = 2\nGROUP BY event_timestamp_minute, d.id \nORDER BY event_timestamp_minute;",
+          "rawSql": "WITH top_rates AS (\n    SELECT \n        CURRENCY_SR_KEY,\n        ROW_NUMBER() OVER (ORDER BY MAX(currenncy_rate_in_usd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_currency_rate\n    where CURRENCY_SR_KEY  in (select CURRENCY_SR_KEY \n    \t\t\t\t\t   from coincap_prod.dim_currency_rate dr \n    \t\t\t\t\t   where dr.currency_type  = 'crypto'\n    \t\t\t\t\t   )\n    GROUP BY CURRENCY_SR_KEY\n    ORDER BY MAX(currenncy_rate_in_usd) DESC\n    LIMIT 5\n)\nSELECT \n    d.currency_id,\n    AVG(f.currenncy_rate_in_usd) AS \"Average Value\",\n    DATE_TRUNC('minute', f.event_timestamp) AS event_timestamp_minute\nFROM coincap_prod.fact_currency_rate   f\nINNER JOIN top_rates t \n    ON f.CURRENCY_SR_KEY = t.CURRENCY_SR_KEY  \nINNER JOIN coincap_prod.dim_currency_rate d \n    ON f.CURRENCY_SR_KEY = d.CURRENCY_SR_KEY  \nWHERE t.row_num = 2\nGROUP BY event_timestamp_minute, d.currency_id \nORDER BY event_timestamp_minute;\n",
           "refId": "A",
           "sql": {
             "columns": [
@@ -475,7 +475,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    where rate_sr_key  in (select rate_sr_key \n    \t\t\t\t\t   from coincap_prod.dim_rates dr \n    \t\t\t\t\t   where dr.type = 'crypto'\n    \t\t\t\t\t   )\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT \n    d.id,\n    AVG(f.rateusd) AS \"Average Value\",\n    DATE_TRUNC('minute', f.event_timestamp) AS event_timestamp_minute\nFROM coincap_prod.fact_rates f\nINNER JOIN top_rates t \n    ON f.rate_sr_key = t.rate_sr_key  \nINNER JOIN coincap_prod.dim_rates d \n    ON f.rate_sr_key = d.rate_sr_key  \nWHERE t.row_num = 3\nGROUP BY event_timestamp_minute, d.id \nORDER BY event_timestamp_minute;",
+          "rawSql": "WITH top_rates AS (\n    SELECT \n        CURRENCY_SR_KEY,\n        ROW_NUMBER() OVER (ORDER BY MAX(currenncy_rate_in_usd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_currency_rate\n    where CURRENCY_SR_KEY  in (select CURRENCY_SR_KEY \n    \t\t\t\t\t   from coincap_prod.dim_currency_rate dr \n    \t\t\t\t\t   where dr.currency_type  = 'crypto'\n    \t\t\t\t\t   )\n    GROUP BY CURRENCY_SR_KEY\n    ORDER BY MAX(currenncy_rate_in_usd) DESC\n    LIMIT 5\n)\nSELECT \n    d.currency_id,\n    AVG(f.currenncy_rate_in_usd) AS \"Average Value\",\n    DATE_TRUNC('minute', f.event_timestamp) AS event_timestamp_minute\nFROM coincap_prod.fact_currency_rate   f\nINNER JOIN top_rates t \n    ON f.CURRENCY_SR_KEY = t.CURRENCY_SR_KEY  \nINNER JOIN coincap_prod.dim_currency_rate d \n    ON f.CURRENCY_SR_KEY = d.CURRENCY_SR_KEY  \nWHERE t.row_num = 3\nGROUP BY event_timestamp_minute, d.currency_id \nORDER BY event_timestamp_minute;\n",
           "refId": "A",
           "sql": {
             "columns": [
@@ -586,7 +586,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    where rate_sr_key  in (select rate_sr_key \n    \t\t\t\t\t   from coincap_prod.dim_rates dr \n    \t\t\t\t\t   where dr.type = 'crypto'\n    \t\t\t\t\t   )\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT \n    d.id,\n    AVG(f.rateusd) AS \"Average Value\",\n    DATE_TRUNC('minute', f.event_timestamp) AS event_timestamp_minute\nFROM coincap_prod.fact_rates f\nINNER JOIN top_rates t \n    ON f.rate_sr_key = t.rate_sr_key  \nINNER JOIN coincap_prod.dim_rates d \n    ON f.rate_sr_key = d.rate_sr_key  \nWHERE t.row_num = 4\nGROUP BY event_timestamp_minute, d.id \nORDER BY event_timestamp_minute;",
+          "rawSql": "WITH top_rates AS (\n    SELECT \n        CURRENCY_SR_KEY,\n        ROW_NUMBER() OVER (ORDER BY MAX(currenncy_rate_in_usd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_currency_rate\n    where CURRENCY_SR_KEY  in (select CURRENCY_SR_KEY \n    \t\t\t\t\t   from coincap_prod.dim_currency_rate dr \n    \t\t\t\t\t   where dr.currency_type  = 'crypto'\n    \t\t\t\t\t   )\n    GROUP BY CURRENCY_SR_KEY\n    ORDER BY MAX(currenncy_rate_in_usd) DESC\n    LIMIT 5\n)\nSELECT \n    d.currency_id,\n    AVG(f.currenncy_rate_in_usd) AS \"Average Value\",\n    DATE_TRUNC('minute', f.event_timestamp) AS event_timestamp_minute\nFROM coincap_prod.fact_currency_rate   f\nINNER JOIN top_rates t \n    ON f.CURRENCY_SR_KEY = t.CURRENCY_SR_KEY  \nINNER JOIN coincap_prod.dim_currency_rate d \n    ON f.CURRENCY_SR_KEY = d.CURRENCY_SR_KEY  \nWHERE t.row_num = 4\nGROUP BY event_timestamp_minute, d.currency_id \nORDER BY event_timestamp_minute;\n",
           "refId": "A",
           "sql": {
             "columns": [
@@ -627,17 +627,18 @@
           "type": "grafana-postgresql-datasource",
           "uid": "PAEFA1ED0F50C7036"
         },
-        "definition": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    where rate_sr_key in (select rate_sr_key from\n                         coincap_prod.dim_rates dr \n                         where type = 'crypto')\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.id) \nFROM coincap_prod.dim_rates d\ninner JOIN top_rates t \n    ON d.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 1;",
+        "definition": "WITH top_rates AS (\n    SELECT \n        f.currency_sr_key ,\n        ROW_NUMBER() OVER (ORDER BY MAX(CURRENNCY_RATE_IN_USD) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_currency_rate f\n    where currency_sr_key in (select currency_sr_key from\n                         coincap_prod.dim_currency_rate  dr \n                         where currency_type = 'crypto')\n    GROUP BY currency_sr_key\n    ORDER BY MAX(CURRENNCY_RATE_IN_USD) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.currency_id) \nFROM coincap_prod.dim_currency_rate d\ninner JOIN top_rates t \n    ON d.currency_sr_key = t.currency_sr_key  \nWHERE t.row_num = 1;",
         "hide": 2,
         "label": "crypto_1",
         "name": "crypto_1",
         "options": [],
-        "query": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    where rate_sr_key in (select rate_sr_key from\n                         coincap_prod.dim_rates dr \n                         where type = 'crypto')\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.id) \nFROM coincap_prod.dim_rates d\ninner JOIN top_rates t \n    ON d.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 1;",
+        "query": "WITH top_rates AS (\n    SELECT \n        f.currency_sr_key ,\n        ROW_NUMBER() OVER (ORDER BY MAX(CURRENNCY_RATE_IN_USD) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_currency_rate f\n    where currency_sr_key in (select currency_sr_key from\n                         coincap_prod.dim_currency_rate  dr \n                         where currency_type = 'crypto')\n    GROUP BY currency_sr_key\n    ORDER BY MAX(CURRENNCY_RATE_IN_USD) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.currency_id) \nFROM coincap_prod.dim_currency_rate d\ninner JOIN top_rates t \n    ON d.currency_sr_key = t.currency_sr_key  \nWHERE t.row_num = 1;",
         "refresh": 2,
         "regex": "",
         "type": "query"
       },
       {
+        "allowCustomValue": false,
         "current": {
           "text": "WRAPPED-BITCOIN",
           "value": "WRAPPED-BITCOIN"
@@ -646,13 +647,13 @@
           "type": "grafana-postgresql-datasource",
           "uid": "PAEFA1ED0F50C7036"
         },
-        "definition": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    where rate_sr_key in (select rate_sr_key from\n                         coincap_prod.dim_rates dr \n                         where type = 'crypto')\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.id) \nFROM coincap_prod.dim_rates d\ninner JOIN top_rates t \n    ON d.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 2;",
+        "definition": "WITH top_rates AS (\n    SELECT \n        f.currency_sr_key ,\n        ROW_NUMBER() OVER (ORDER BY MAX(CURRENNCY_RATE_IN_USD) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_currency_rate f\n    where currency_sr_key in (select currency_sr_key from\n                         coincap_prod.dim_currency_rate  dr \n                         where currency_type = 'crypto')\n    GROUP BY currency_sr_key\n    ORDER BY MAX(CURRENNCY_RATE_IN_USD) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.currency_id) \nFROM coincap_prod.dim_currency_rate d\ninner JOIN top_rates t \n    ON d.currency_sr_key = t.currency_sr_key  \nWHERE t.row_num = 2;",
         "hide": 2,
         "label": "crypto_2",
         "name": "crypto_2",
         "options": [],
-        "query": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    where rate_sr_key in (select rate_sr_key from\n                         coincap_prod.dim_rates dr \n                         where type = 'crypto')\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.id) \nFROM coincap_prod.dim_rates d\ninner JOIN top_rates t \n    ON d.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 2;",
-        "refresh": 1,
+        "query": "WITH top_rates AS (\n    SELECT \n        f.currency_sr_key ,\n        ROW_NUMBER() OVER (ORDER BY MAX(CURRENNCY_RATE_IN_USD) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_currency_rate f\n    where currency_sr_key in (select currency_sr_key from\n                         coincap_prod.dim_currency_rate  dr \n                         where currency_type = 'crypto')\n    GROUP BY currency_sr_key\n    ORDER BY MAX(CURRENNCY_RATE_IN_USD) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.currency_id) \nFROM coincap_prod.dim_currency_rate d\ninner JOIN top_rates t \n    ON d.currency_sr_key = t.currency_sr_key  \nWHERE t.row_num = 2;",
+        "refresh": 2,
         "regex": "",
         "type": "query"
       },
@@ -666,31 +667,12 @@
           "type": "grafana-postgresql-datasource",
           "uid": "PAEFA1ED0F50C7036"
         },
-        "definition": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    where rate_sr_key in (select rate_sr_key from\n                         coincap_prod.dim_rates dr \n                         where type = 'crypto')\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.id) \nFROM coincap_prod.dim_rates d\ninner JOIN top_rates t \n    ON d.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 3;",
+        "definition": "WITH top_rates AS (\n    SELECT \n        f.currency_sr_key ,\n        ROW_NUMBER() OVER (ORDER BY MAX(CURRENNCY_RATE_IN_USD) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_currency_rate f\n    where currency_sr_key in (select currency_sr_key from\n                         coincap_prod.dim_currency_rate  dr \n                         where currency_type = 'crypto')\n    GROUP BY currency_sr_key\n    ORDER BY MAX(CURRENNCY_RATE_IN_USD) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.currency_id) \nFROM coincap_prod.dim_currency_rate d\ninner JOIN top_rates t \n    ON d.currency_sr_key = t.currency_sr_key  \nWHERE t.row_num = 3;",
         "hide": 2,
         "label": "crypto_3",
         "name": "crypto_3",
         "options": [],
-        "query": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    where rate_sr_key in (select rate_sr_key from\n                         coincap_prod.dim_rates dr \n                         where type = 'crypto')\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.id) \nFROM coincap_prod.dim_rates d\ninner JOIN top_rates t \n    ON d.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 3;",
-        "refresh": 2,
-        "regex": "",
-        "type": "query"
-      },
-      {
-        "current": {
-          "text": "GOLD-OUNCE",
-          "value": "GOLD-OUNCE"
-        },
-        "datasource": {
-          "type": "grafana-postgresql-datasource",
-          "uid": "PAEFA1ED0F50C7036"
-        },
-        "definition": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    where rate_sr_key in (select rate_sr_key from\n                         coincap_prod.dim_rates dr \n                         where type = 'crypto')\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.id) \nFROM coincap_prod.dim_rates d\ninner JOIN top_rates t \n    ON d.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 4;",
-        "hide": 2,
-        "label": "crypto_4",
-        "name": "crypto_4",
-        "options": [],
-        "query": "WITH top_rates AS (\n    SELECT \n        rate_sr_key,\n        ROW_NUMBER() OVER (ORDER BY MAX(rateusd) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_rates\n    where rate_sr_key in (select rate_sr_key from\n                         coincap_prod.dim_rates dr \n                         where type = 'crypto')\n    GROUP BY rate_sr_key\n    ORDER BY MAX(rateusd) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.id) \nFROM coincap_prod.dim_rates d\ninner JOIN top_rates t \n    ON d.rate_sr_key = t.rate_sr_key  \nWHERE t.row_num = 4;",
+        "query": "WITH top_rates AS (\n    SELECT \n        f.currency_sr_key ,\n        ROW_NUMBER() OVER (ORDER BY MAX(CURRENNCY_RATE_IN_USD) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_currency_rate f\n    where currency_sr_key in (select currency_sr_key from\n                         coincap_prod.dim_currency_rate  dr \n                         where currency_type = 'crypto')\n    GROUP BY currency_sr_key\n    ORDER BY MAX(CURRENNCY_RATE_IN_USD) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.currency_id) \nFROM coincap_prod.dim_currency_rate d\ninner JOIN top_rates t \n    ON d.currency_sr_key = t.currency_sr_key  \nWHERE t.row_num = 3;",
         "refresh": 2,
         "regex": "",
         "type": "query"
@@ -705,13 +687,34 @@
           "type": "grafana-postgresql-datasource",
           "uid": "PAEFA1ED0F50C7036"
         },
-        "definition": "SELECT UPPER(d.id) \nFROM coincap_prod.dim_rates d\nwhere d.type='crypto'\norder by d.id ",
+        "definition": "WITH top_rates AS (\n    SELECT \n        f.currency_sr_key ,\n        ROW_NUMBER() OVER (ORDER BY MAX(CURRENNCY_RATE_IN_USD) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_currency_rate f\n    where currency_sr_key in (select currency_sr_key from\n                         coincap_prod.dim_currency_rate  dr \n                         where currency_type = 'crypto')\n    GROUP BY currency_sr_key\n    ORDER BY MAX(CURRENNCY_RATE_IN_USD) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.currency_id) \nFROM coincap_prod.dim_currency_rate d\ninner JOIN top_rates t \n    ON d.currency_sr_key = t.currency_sr_key  \nWHERE t.row_num = 4;",
+        "hide": 2,
+        "label": "crypto_4",
+        "name": "crypto_4",
+        "options": [],
+        "query": "WITH top_rates AS (\n    SELECT \n        f.currency_sr_key ,\n        ROW_NUMBER() OVER (ORDER BY MAX(CURRENNCY_RATE_IN_USD) DESC) AS row_num\t\t\n    FROM coincap_prod.fact_currency_rate f\n    where currency_sr_key in (select currency_sr_key from\n                         coincap_prod.dim_currency_rate  dr \n                         where currency_type = 'crypto')\n    GROUP BY currency_sr_key\n    ORDER BY MAX(CURRENNCY_RATE_IN_USD) DESC\n    LIMIT 5\n)\nSELECT UPPER(d.currency_id) \nFROM coincap_prod.dim_currency_rate d\ninner JOIN top_rates t \n    ON d.currency_sr_key = t.currency_sr_key  \nWHERE t.row_num = 4;",
+        "refresh": 2,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "allowCustomValue": false,
+        "current": {
+          "text": "GOLD-OUNCE",
+          "value": "GOLD-OUNCE"
+        },
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "PAEFA1ED0F50C7036"
+        },
+        "definition": "SELECT UPPER(d.currency_id) \nFROM coincap_prod.dim_currency_rate   d\nwhere d.currency_type='crypto'\norder by d.currency_id ",
         "label": "Select Crypto ",
         "name": "crypto_any",
         "options": [],
-        "query": "SELECT UPPER(d.id) \nFROM coincap_prod.dim_rates d\nwhere d.type='crypto'\norder by d.id ",
-        "refresh": 1,
+        "query": "SELECT UPPER(d.currency_id) \nFROM coincap_prod.dim_currency_rate   d\nwhere d.currency_type='crypto'\norder by d.currency_id ",
+        "refresh": 2,
         "regex": "",
+        "sort": 1,
         "type": "query"
       }
     ]
@@ -724,6 +727,6 @@
   "timezone": "browser",
   "title": "Live Crypto Rates",
   "uid": "ceedz22hkpla8a",
-  "version": 2,
+  "version": 5,
   "weekStart": ""
 }

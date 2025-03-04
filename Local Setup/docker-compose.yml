@@ -344,6 +344,8 @@ services:
       - ./grafana/dashboards/dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml  # Provisioning configuration
       - ./grafana/datasources:/etc/grafana/provisioning/datasources
       - ./grafana/dashboards:/var/lib/grafana/dashboards
+      - ./grafana/geojson:/usr/share/grafana/public/maps
+      - ./grafana/scripts:/usr/share/grafana/public/scripts
     networks:
       - airflownetwork
 
@@ -365,6 +367,7 @@ services:
         - /var/run/docker.sock:/var/run/docker.sock
         - /tmp/kestra-wd:/tmp/kestra-wd
         - ./kestra/flows:/app/flows
+        - ./grafana/geojson:/app/geojson
       environment:
         KESTRA_CONFIGURATION: |
           datasources:

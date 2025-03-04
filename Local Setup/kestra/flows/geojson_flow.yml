@@ -1,0 +1,7 @@
+id: run-geojson-script
+namespace: coincap.grafana
+tasks:
+  - id: run-geojson-script
+    type: io.kestra.core.tasks.scripts.Bash
+    commands:
+      - 'python /app/storage/coincap/grafana/_files/test.py'

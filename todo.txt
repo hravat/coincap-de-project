@@ -1,1 +1,3 @@
 
+2) Coorrect spelling error in currency column fact rates 
+3)  /home/hussain change tp ~ in prestart.sh script

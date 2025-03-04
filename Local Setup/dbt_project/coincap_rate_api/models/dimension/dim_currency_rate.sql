@@ -2,8 +2,8 @@
 {{
 config(
     materialized = 'incremental',
-    unique_key = 'id',
-    merge_exclude_columns = ['insert_time','active_flag','rate_sr_key'],
+    unique_key = 'currency_id',
+    merge_exclude_columns = ['insert_time','active_flag','currency_sr_key'],
     incremental_strategy = 'merge'
     )
 }}
@@ -22,10 +22,10 @@ WITH source_data AS (
 )
 SELECT
     --{{ dbt_utils.generate_surrogate_key(['source_data.id']) }} AS rate_sr_key,
-    nextval('coincap_stg.rate_sr_key_sequence') AS rate_sr_key,
-    source_data.id,
-    source_data.symbol,
-    source_data.type,
+    nextval('coincap_stg.rate_sr_key_sequence') AS currency_sr_key,
+    source_data.id AS currency_id, 
+    source_data.symbol AS currency_symbol,
+    source_data.type AS currency_type,
     source_data.insert_time,
     source_data.update_time,
     source_data.active_flag,
