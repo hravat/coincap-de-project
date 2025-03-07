@@ -5,3 +5,8 @@ tasks:
     type: io.kestra.core.tasks.scripts.Bash
     commands:
       - 'python /app/storage/coincap/grafana/_files/test.py'
+
+triggers:
+  - id: schedule_rate_geojson_run
+    type: io.kestra.core.models.triggers.types.Schedule
+    cron: "*/5 * * * *"

@@ -1,0 +1,1007 @@
+[
+    {
+        "Currency Symbol": "STD",
+        "Currency Rate": -99,
+        "Country": "U"
+    },
+    {
+        "Currency Symbol": "STD",
+        "Currency Rate": -99.0,
+        "Country": "n"
+    },
+    {
+        "Currency Symbol": "STD",
+        "Currency Rate": -99.0,
+        "Country": "k"
+    },
+    {
+        "Currency Symbol": "STD",
+        "Currency Rate": -99.0,
+        "Country": "n"
+    },
+    {
+        "Currency Symbol": "STD",
+        "Currency Rate": -99.0,
+        "Country": "o"
+    },
+    {
+        "Currency Symbol": "STD",
+        "Currency Rate": -99.0,
+        "Country": "w"
+    },
+    {
+        "Currency Symbol": "STD",
+        "Currency Rate": -99.0,
+        "Country": "n"
+    },
+    {
+        "Currency Symbol": "PYG",
+        "Currency Rate": -99,
+        "Country": "U"
+    },
+    {
+        "Currency Symbol": "PYG",
+        "Currency Rate": -99.0,
+        "Country": "n"
+    },
+    {
+        "Currency Symbol": "PYG",
+        "Currency Rate": -99.0,
+        "Country": "k"
+    },
+    {
+        "Currency Symbol": "PYG",
+        "Currency Rate": -99.0,
+        "Country": "n"
+    },
+    {
+        "Currency Symbol": "PYG",
+        "Currency Rate": -99.0,
+        "Country": "o"
+    },
+    {
+        "Currency Symbol": "PYG",
+        "Currency Rate": -99.0,
+        "Country": "w"
+    },
+    {
+        "Currency Symbol": "PYG",
+        "Currency Rate": -99.0,
+        "Country": "n"
+    },
+    {
+        "Currency Symbol": "LBP",
+        "Currency Rate": -99,
+        "Country": "Lebanon"
+    },
+    {
+        "Currency Symbol": "VND",
+        "Currency Rate": -99,
+        "Country": "Vietnam"
+    },
+    {
+        "Currency Symbol": "LAK",
+        "Currency Rate": -99,
+        "Country": "U"
+    },
+    {
+        "Currency Symbol": "LAK",
+        "Currency Rate": -99.0,
+        "Country": "n"
+    },
+    {
+        "Currency Symbol": "LAK",
+        "Currency Rate": -99.0,
+        "Country": "k"
+    },
+    {
+        "Currency Symbol": "LAK",
+        "Currency Rate": -99.0,
+        "Country": "n"
+    },
+    {
+        "Currency Symbol": "LAK",
+        "Currency Rate": -99.0,
+        "Country": "o"
+    },
+    {
+        "Currency Symbol": "LAK",
+        "Currency Rate": -99.0,
+        "Country": "w"
+    },
+    {
+        "Currency Symbol": "LAK",
+        "Currency Rate": -99.0,
+        "Country": "n"
+    },
+    {
+        "Currency Symbol": "MGA",
+        "Currency Rate": -99,
+        "Country": "Madagascar"
+    },
+    {
+        "Currency Symbol": "UZS",
+        "Currency Rate": -99,
+        "Country": "Uzbekistan"
+    },
+    {
+        "Currency Symbol": "IRR",
+        "Currency Rate": -99,
+        "Country": "Iran"
+    },
+    {
+        "Currency Symbol": "UGX",
+        "Currency Rate": -99,
+        "Country": "Uganda"
+    },
+    {
+        "Currency Symbol": "IDR",
+        "Currency Rate": -99,
+        "Country": "Indonesia"
+    },
+    {
+        "Currency Symbol": "TZS",
+        "Currency Rate": -99,
+        "Country": "Tanzania"
+    },
+    {
+        "Currency Symbol": "SYP",
+        "Currency Rate": -99,
+        "Country": "Syria"
+    },
+    {
+        "Currency Symbol": "MNT",
+        "Currency Rate": -99,
+        "Country": "Mongolia"
+    },
+    {
+        "Currency Symbol": "BIF",
+        "Currency Rate": -99,
+        "Country": "Burundi"
+    },
+    {
+        "Currency Symbol": "KHR",
+        "Currency Rate": -99,
+        "Country": "Cambodia"
+    },
+    {
+        "Currency Symbol": "GNF",
+        "Currency Rate": -99,
+        "Country": "Guinea"
+    },
+    {
+        "Currency Symbol": "MMK",
+        "Currency Rate": -99,
+        "Country": "Myanmar"
+    },
+    {
+        "Currency Symbol": "COP",
+        "Currency Rate": -99,
+        "Country": "Colombia"
+    },
+    {
+        "Currency Symbol": "CDF",
+        "Currency Rate": -99,
+        "Country": "Congo"
+    },
+    {
+        "Currency Symbol": "SLL",
+        "Currency Rate": -99,
+        "Country": "Sierra Leone"
+    },
+    {
+        "Currency Symbol": "RWF",
+        "Currency Rate": 1000.0,
+        "Country": "Rwanda"
+    },
+    {
+        "Currency Symbol": "KRW",
+        "Currency Rate": 1000.0,
+        "Country": "South Korea"
+    },
+    {
+        "Currency Symbol": "IQD",
+        "Currency Rate": 1000.0,
+        "Country": "Iraq"
+    },
+    {
+        "Currency Symbol": "AOA",
+        "Currency Rate": 1000.0,
+        "Country": "Angola"
+    },
+    {
+        "Currency Symbol": "ARS",
+        "Currency Rate": 1000.0,
+        "Country": "Argentina"
+    },
+    {
+        "Currency Symbol": "NGN",
+        "Currency Rate": 1000.0,
+        "Country": "Nigeria"
+    },
+    {
+        "Currency Symbol": "MWK",
+        "Currency Rate": 1000.0,
+        "Country": "Malawi"
+    },
+    {
+        "Currency Symbol": "CLP",
+        "Currency Rate": 1000.0,
+        "Country": "Chile"
+    },
+    {
+        "Currency Symbol": "KPW",
+        "Currency Rate": 1000.0,
+        "Country": "North Korea"
+    },
+    {
+        "Currency Symbol": "SOS",
+        "Currency Rate": 500.0,
+        "Country": "Somalia"
+    },
+    {
+        "Currency Symbol": "KMF",
+        "Currency Rate": 500.0,
+        "Country": "Comoros"
+    },
+    {
+        "Currency Symbol": "SDG",
+        "Currency Rate": 500.0,
+        "Country": "Sudan"
+    },
+    {
+        "Currency Symbol": "CRC",
+        "Currency Rate": 500.0,
+        "Country": "Costa Rica"
+    },
+    {
+        "Currency Symbol": "XOF",
+        "Currency Rate": 500.0,
+        "Country": "West African Countries"
+    },
+    {
+        "Currency Symbol": "KZT",
+        "Currency Rate": 500.0,
+        "Country": "Kazakhstan"
+    },
+    {
+        "Currency Symbol": "XAF",
+        "Currency Rate": 500.0,
+        "Country": "Central Africa"
+    },
+    {
+        "Currency Symbol": "LKR",
+        "Currency Rate": 333.3333333333333,
+        "Country": "Sri Lanka"
+    },
+    {
+        "Currency Symbol": "ZWL",
+        "Currency Rate": 333.3333333333333,
+        "Country": "Zimbabwe"
+    },
+    {
+        "Currency Symbol": "AMD",
+        "Currency Rate": 333.3333333333333,
+        "Country": "Armenia"
+    },
+    {
+        "Currency Symbol": "HUF",
+        "Currency Rate": 333.3333333333333,
+        "Country": "Hungary"
+    },
+    {
+        "Currency Symbol": "YER",
+        "Currency Rate": 250.0,
+        "Country": "Yemen"
+    },
+    {
+        "Currency Symbol": "PKR",
+        "Currency Rate": 250.0,
+        "Country": "Pakistan"
+    },
+    {
+        "Currency Symbol": "GYD",
+        "Currency Rate": 200.0,
+        "Country": "Guyana"
+    },
+    {
+        "Currency Symbol": "LRD",
+        "Currency Rate": 200.0,
+        "Country": "Liberia"
+    },
+    {
+        "Currency Symbol": "DJF",
+        "Currency Rate": 166.66666666666666,
+        "Country": "Djibouti"
+    },
+    {
+        "Currency Symbol": "JMD",
+        "Currency Rate": 166.66666666666666,
+        "Country": "Jamaica"
+    },
+    {
+        "Currency Symbol": "JPY",
+        "Currency Rate": 142.85714285714286,
+        "Country": "Japan"
+    },
+    {
+        "Currency Symbol": "NPR",
+        "Currency Rate": 142.85714285714286,
+        "Country": "Nepal"
+    },
+    {
+        "Currency Symbol": "ISK",
+        "Currency Rate": 142.85714285714286,
+        "Country": "Iceland"
+    },
+    {
+        "Currency Symbol": "KES",
+        "Currency Rate": 125.0,
+        "Country": "Kenya"
+    },
+    {
+        "Currency Symbol": "BDT",
+        "Currency Rate": 125.0,
+        "Country": "Bangladesh"
+    },
+    {
+        "Currency Symbol": "ETB",
+        "Currency Rate": 125.0,
+        "Country": "Ethiopia"
+    },
+    {
+        "Currency Symbol": "SSP",
+        "Currency Rate": 125.0,
+        "Country": "South Sudan"
+    },
+    {
+        "Currency Symbol": "VUV",
+        "Currency Rate": 125.0,
+        "Country": "Vanuatu"
+    },
+    {
+        "Currency Symbol": "HTG",
+        "Currency Rate": 125.0,
+        "Country": "Haiti"
+    },
+    {
+        "Currency Symbol": "DZD",
+        "Currency Rate": 125.0,
+        "Country": "Algeria"
+    },
+    {
+        "Currency Symbol": "RSD",
+        "Currency Rate": 111.11111111111111,
+        "Country": "Serbia"
+    },
+    {
+        "Currency Symbol": "XPF",
+        "Currency Rate": 111.11111111111111,
+        "Country": "Pacific Franc Zone"
+    },
+    {
+        "Currency Symbol": "CVE",
+        "Currency Rate": 100.0,
+        "Country": "Cape Verde"
+    },
+    {
+        "Currency Symbol": "INR",
+        "Currency Rate": 90.9090909090909,
+        "Country": "India"
+    },
+    {
+        "Currency Symbol": "RUB",
+        "Currency Rate": 90.9090909090909,
+        "Country": "Russia"
+    },
+    {
+        "Currency Symbol": "KGS",
+        "Currency Rate": 90.9090909090909,
+        "Country": "Kyrgyzstan"
+    },
+    {
+        "Currency Symbol": "BTN",
+        "Currency Rate": 83.33333333333333,
+        "Country": "Bhutan"
+    },
+    {
+        "Currency Symbol": "GMD",
+        "Currency Rate": 71.42857142857143,
+        "Country": "Gambia"
+    },
+    {
+        "Currency Symbol": "AFN",
+        "Currency Rate": 71.42857142857143,
+        "Country": "Afghanistan"
+    },
+    {
+        "Currency Symbol": "VES",
+        "Currency Rate": 66.66666666666667,
+        "Country": "Venezuela"
+    },
+    {
+        "Currency Symbol": "DOP",
+        "Currency Rate": 62.5,
+        "Country": "Dominican Republic"
+    },
+    {
+        "Currency Symbol": "MZN",
+        "Currency Rate": 62.5,
+        "Country": "Mozambique"
+    },
+    {
+        "Currency Symbol": "PHP",
+        "Currency Rate": 58.8235294117647,
+        "Country": "Philippines"
+    },
+    {
+        "Currency Symbol": "MKD",
+        "Currency Rate": 55.55555555555556,
+        "Country": "Macedonia"
+    },
+    {
+        "Currency Symbol": "EGP",
+        "Currency Rate": 50.0,
+        "Country": "Egypt"
+    },
+    {
+        "Currency Symbol": "MUR",
+        "Currency Rate": 45.45454545454545,
+        "Country": "Mauritius"
+    },
+    {
+        "Currency Symbol": "UAH",
+        "Currency Rate": 41.666666666666664,
+        "Country": "Ukraine"
+    },
+    {
+        "Currency Symbol": "UYU",
+        "Currency Rate": 41.666666666666664,
+        "Country": "Uruguay"
+    },
+    {
+        "Currency Symbol": "MRU",
+        "Currency Rate": 40.0,
+        "Country": "Mauritania"
+    },
+    {
+        "Currency Symbol": "NIO",
+        "Currency Rate": 37.03703703703704,
+        "Country": "Nicaragua"
+    },
+    {
+        "Currency Symbol": "TRY",
+        "Currency Rate": 37.03703703703704,
+        "Country": "Turkey"
+    },
+    {
+        "Currency Symbol": "SRD",
+        "Currency Rate": 35.714285714285715,
+        "Country": "Suriname"
+    },
+    {
+        "Currency Symbol": "THB",
+        "Currency Rate": 33.333333333333336,
+        "Country": "Thailand"
+    },
+    {
+        "Currency Symbol": "TWD",
+        "Currency Rate": 33.333333333333336,
+        "Country": "Taiwan"
+    },
+    {
+        "Currency Symbol": "ZMW",
+        "Currency Rate": 28.571428571428573,
+        "Country": "Zambia"
+    },
+    {
+        "Currency Symbol": "CUP",
+        "Currency Rate": 25.641025641025642,
+        "Country": "Cuba"
+    },
+    {
+        "Currency Symbol": "HNL",
+        "Currency Rate": 25.641025641025642,
+        "Country": "Honduras"
+    },
+    {
+        "Currency Symbol": "STN",
+        "Currency Rate": 23.25581395348837,
+        "Country": "S\u00e3o Tom\u00e9 and Pr\u00edncipe"
+    },
+    {
+        "Currency Symbol": "CZK",
+        "Currency Rate": 22.727272727272727,
+        "Country": "Czech Republic"
+    },
+    {
+        "Currency Symbol": "MXN",
+        "Currency Rate": 20.408163265306122,
+        "Country": "Mexico"
+    },
+    {
+        "Currency Symbol": "NAD",
+        "Currency Rate": 18.181818181818183,
+        "Country": "Namibia"
+    },
+    {
+        "Currency Symbol": "LSL",
+        "Currency Rate": 18.181818181818183,
+        "Country": "Lesotho"
+    },
+    {
+        "Currency Symbol": "ZAR",
+        "Currency Rate": 18.181818181818183,
+        "Country": "South Africa"
+    },
+    {
+        "Currency Symbol": "MDL",
+        "Currency Rate": 18.181818181818183,
+        "Country": "Moldova"
+    },
+    {
+        "Currency Symbol": "SZL",
+        "Currency Rate": 18.181818181818183,
+        "Country": "Swaziland"
+    },
+    {
+        "Currency Symbol": "GHS",
+        "Currency Rate": 15.384615384615385,
+        "Country": "Ghana"
+    },
+    {
+        "Currency Symbol": "MVR",
+        "Currency Rate": 15.384615384615385,
+        "Country": "Maldives"
+    },
+    {
+        "Currency Symbol": "ERN",
+        "Currency Rate": 14.925373134328359,
+        "Country": "Eritrea"
+    },
+    {
+        "Currency Symbol": "SCR",
+        "Currency Rate": 14.285714285714286,
+        "Country": "Seychelles"
+    },
+    {
+        "Currency Symbol": "BWP",
+        "Currency Rate": 13.513513513513514,
+        "Country": "Botswana"
+    },
+    {
+        "Currency Symbol": "TJS",
+        "Currency Rate": 10.869565217391305,
+        "Country": "Tajikistan"
+    },
+    {
+        "Currency Symbol": "NOK",
+        "Currency Rate": 10.869565217391305,
+        "Country": "Norway"
+    },
+    {
+        "Currency Symbol": "SEK",
+        "Currency Rate": 10.1010101010101,
+        "Country": "Sweden"
+    },
+    {
+        "Currency Symbol": "MAD",
+        "Currency Rate": 9.70873786407767,
+        "Country": "Morocco"
+    },
+    {
+        "Currency Symbol": "SVC",
+        "Currency Rate": 8.771929824561404,
+        "Country": "El Salvador"
+    },
+    {
+        "Currency Symbol": "SBD",
+        "Currency Rate": 8.474576271186441,
+        "Country": "Solomon Islands"
+    },
+    {
+        "Currency Symbol": "MOP",
+        "Currency Rate": 8.0,
+        "Country": "Macau"
+    },
+    {
+        "Currency Symbol": "HKD",
+        "Currency Rate": 7.751937984496124,
+        "Country": "Hong Kong"
+    },
+    {
+        "Currency Symbol": "GTQ",
+        "Currency Rate": 7.6923076923076925,
+        "Country": "Guatemala"
+    },
+    {
+        "Currency Symbol": "CNY",
+        "Currency Rate": 7.246376811594203,
+        "Country": "China"
+    },
+    {
+        "Currency Symbol": "CNH",
+        "Currency Rate": 7.246376811594203,
+        "Country": "China"
+    },
+    {
+        "Currency Symbol": "HRK",
+        "Currency Rate": 6.944444444444445,
+        "Country": "Croatia"
+    },
+    {
+        "Currency Symbol": "BOB",
+        "Currency Rate": 6.896551724137931,
+        "Country": "Bolivia"
+    },
+    {
+        "Currency Symbol": "DKK",
+        "Currency Rate": 6.8493150684931505,
+        "Country": "Denmark"
+    },
+    {
+        "Currency Symbol": "TTD",
+        "Currency Rate": 6.802721088435374,
+        "Country": "Trinidad and Tobago"
+    },
+    {
+        "Currency Symbol": "BRL",
+        "Currency Rate": 5.780346820809249,
+        "Country": "Brazil"
+    },
+    {
+        "Currency Symbol": "LYD",
+        "Currency Rate": 4.854368932038835,
+        "Country": "Libya"
+    },
+    {
+        "Currency Symbol": "RON",
+        "Currency Rate": 4.587155963302752,
+        "Country": "Romania"
+    },
+    {
+        "Currency Symbol": "MYR",
+        "Currency Rate": 4.424778761061947,
+        "Country": "Malaysia"
+    },
+    {
+        "Currency Symbol": "PGK",
+        "Currency Rate": 4.016064257028113,
+        "Country": "Papua New Guinea"
+    },
+    {
+        "Currency Symbol": "PLN",
+        "Currency Rate": 3.8461538461538463,
+        "Country": "Poland"
+    },
+    {
+        "Currency Symbol": "SAR",
+        "Currency Rate": 3.745318352059925,
+        "Country": "Saudi Arabia"
+    },
+    {
+        "Currency Symbol": "AED",
+        "Currency Rate": 3.676470588235294,
+        "Country": "United Arab Emirates"
+    },
+    {
+        "Currency Symbol": "PEN",
+        "Currency Rate": 3.6496350364963503,
+        "Country": "Peru"
+    },
+    {
+        "Currency Symbol": "QAR",
+        "Currency Rate": 3.6363636363636362,
+        "Country": "Qatar"
+    },
+    {
+        "Currency Symbol": "ILS",
+        "Currency Rate": 3.6231884057971016,
+        "Country": "Israel"
+    },
+    {
+        "Currency Symbol": "TMT",
+        "Currency Rate": 3.4965034965034967,
+        "Country": "Turkmenistan"
+    },
+    {
+        "Currency Symbol": "BYN",
+        "Currency Rate": 3.278688524590164,
+        "Country": "Belarus"
+    },
+    {
+        "Currency Symbol": "TND",
+        "Currency Rate": 3.125,
+        "Country": "Tunisia"
+    },
+    {
+        "Currency Symbol": "WST",
+        "Currency Rate": 2.8011204481792715,
+        "Country": "Samoa"
+    },
+    {
+        "Currency Symbol": "GEL",
+        "Currency Rate": 2.7777777777777777,
+        "Country": "Georgia"
+    },
+    {
+        "Currency Symbol": "XCD",
+        "Currency Rate": 2.7027027027027026,
+        "Country": "Eastern Caribbean Dollar"
+    },
+    {
+        "Currency Symbol": "FJD",
+        "Currency Rate": 2.2988505747126435,
+        "Country": "Fiji"
+    },
+    {
+        "Currency Symbol": "BZD",
+        "Currency Rate": 2.0080321285140563,
+        "Country": "Belize"
+    },
+    {
+        "Currency Symbol": "BBD",
+        "Currency Rate": 2.0,
+        "Country": "Barbados"
+    },
+    {
+        "Currency Symbol": "BAM",
+        "Currency Rate": 1.8050541516245486,
+        "Country": "Bosnia and Herzegovina"
+    },
+    {
+        "Currency Symbol": "BGN",
+        "Currency Rate": 1.8018018018018018,
+        "Country": "Bulgaria"
+    },
+    {
+        "Currency Symbol": "ANG",
+        "Currency Rate": 1.8018018018018018,
+        "Country": "Netherlands Antilles"
+    },
+    {
+        "Currency Symbol": "AWG",
+        "Currency Rate": 1.7985611510791366,
+        "Country": "Aruba"
+    },
+    {
+        "Currency Symbol": "NZD",
+        "Currency Rate": 1.7513134851138354,
+        "Country": "New Zealand"
+    },
+    {
+        "Currency Symbol": "AZN",
+        "Currency Rate": 1.7006802721088434,
+        "Country": "Azerbaijan"
+    },
+    {
+        "Currency Symbol": "AUD",
+        "Currency Rate": 1.5873015873015872,
+        "Country": "Australia"
+    },
+    {
+        "Currency Symbol": "CAD",
+        "Currency Rate": 1.4388489208633095,
+        "Country": "Canada"
+    },
+    {
+        "Currency Symbol": "BND",
+        "Currency Rate": 1.3315579227696406,
+        "Country": "Brunei"
+    },
+    {
+        "Currency Symbol": "SGD",
+        "Currency Rate": 1.3297872340425532,
+        "Country": "Singapore"
+    },
+    {
+        "Currency Symbol": "USD",
+        "Currency Rate": 1.0,
+        "Country": "United States of America"
+    },
+    {
+        "Currency Symbol": "BMD",
+        "Currency Rate": 1.0,
+        "Country": "Bermuda"
+    },
+    {
+        "Currency Symbol": "CUC",
+        "Currency Rate": 1.0,
+        "Country": "Cuba"
+    },
+    {
+        "Currency Symbol": "PAB",
+        "Currency Rate": 1.0,
+        "Country": "Panama"
+    },
+    {
+        "Currency Symbol": "EUR",
+        "Currency Rate": 0.9208103130755064,
+        "Country": "Austria"
+    },
+    {
+        "Currency Symbol": "EUR",
+        "Currency Rate": 0.9208103130755064,
+        "Country": "Belgium"
+    },
+    {
+        "Currency Symbol": "EUR",
+        "Currency Rate": 0.9208103130755064,
+        "Country": "Cyprus"
+    },
+    {
+        "Currency Symbol": "EUR",
+        "Currency Rate": 0.9208103130755064,
+        "Country": "Estonia"
+    },
+    {
+        "Currency Symbol": "EUR",
+        "Currency Rate": 0.9208103130755064,
+        "Country": "Finland"
+    },
+    {
+        "Currency Symbol": "EUR",
+        "Currency Rate": 0.9208103130755064,
+        "Country": "France"
+    },
+    {
+        "Currency Symbol": "EUR",
+        "Currency Rate": 0.9208103130755064,
+        "Country": "Germany"
+    },
+    {
+        "Currency Symbol": "EUR",
+        "Currency Rate": 0.9208103130755064,
+        "Country": "Greece"
+    },
+    {
+        "Currency Symbol": "EUR",
+        "Currency Rate": 0.9208103130755064,
+        "Country": "Ireland"
+    },
+    {
+        "Currency Symbol": "EUR",
+        "Currency Rate": 0.9208103130755064,
+        "Country": "Italy"
+    },
+    {
+        "Currency Symbol": "EUR",
+        "Currency Rate": 0.9208103130755064,
+        "Country": "Latvia"
+    },
+    {
+        "Currency Symbol": "EUR",
+        "Currency Rate": 0.9208103130755064,
+        "Country": "Lithuania"
+    },
+    {
+        "Currency Symbol": "EUR",
+        "Currency Rate": 0.9208103130755064,
+        "Country": "Luxembourg"
+    },
+    {
+        "Currency Symbol": "EUR",
+        "Currency Rate": 0.9208103130755064,
+        "Country": "Malta"
+    },
+    {
+        "Currency Symbol": "EUR",
+        "Currency Rate": 0.9208103130755064,
+        "Country": "Netherlands"
+    },
+    {
+        "Currency Symbol": "EUR",
+        "Currency Rate": 0.9208103130755064,
+        "Country": "Portugal"
+    },
+    {
+        "Currency Symbol": "EUR",
+        "Currency Rate": 0.9208103130755064,
+        "Country": "Slovakia"
+    },
+    {
+        "Currency Symbol": "EUR",
+        "Currency Rate": 0.9208103130755064,
+        "Country": "Slovenia"
+    },
+    {
+        "Currency Symbol": "EUR",
+        "Currency Rate": 0.9208103130755064,
+        "Country": "Spain"
+    },
+    {
+        "Currency Symbol": "CHF",
+        "Currency Rate": 0.8771929824561403,
+        "Country": "Switzerland"
+    },
+    {
+        "Currency Symbol": "KYD",
+        "Currency Rate": 0.8340283569641368,
+        "Country": "Cayman Islands"
+    },
+    {
+        "Currency Symbol": "JEP",
+        "Currency Rate": 0.7739938080495357,
+        "Country": "Jersey"
+    },
+    {
+        "Currency Symbol": "IMP",
+        "Currency Rate": 0.7739938080495357,
+        "Country": "Isle of Man"
+    },
+    {
+        "Currency Symbol": "GGP",
+        "Currency Rate": 0.7739938080495357,
+        "Country": "Guernsey"
+    },
+    {
+        "Currency Symbol": "GBP",
+        "Currency Rate": 0.7739938080495357,
+        "Country": "United Kingdom"
+    },
+    {
+        "Currency Symbol": "GIP",
+        "Currency Rate": 0.7739938080495357,
+        "Country": "Gibraltar"
+    },
+    {
+        "Currency Symbol": "FKP",
+        "Currency Rate": 0.7739938080495357,
+        "Country": "Falkland Islands"
+    },
+    {
+        "Currency Symbol": "SHP",
+        "Currency Rate": 0.7739938080495357,
+        "Country": "Saint Helena"
+    },
+    {
+        "Currency Symbol": "XDR",
+        "Currency Rate": 0.7558578987150416,
+        "Country": "International Monetary Fund"
+    },
+    {
+        "Currency Symbol": "JOD",
+        "Currency Rate": 0.7092198581560284,
+        "Country": "Jordan"
+    },
+    {
+        "Currency Symbol": "OMR",
+        "Currency Rate": 0.3850596842510589,
+        "Country": "Oman"
+    },
+    {
+        "Currency Symbol": "BHD",
+        "Currency Rate": 0.3769317753486619,
+        "Country": "Bahrain"
+    },
+    {
+        "Currency Symbol": "KWD",
+        "Currency Rate": 0.3079765937788728,
+        "Country": "Kuwait"
+    },
+    {
+        "Currency Symbol": "XAG",
+        "Currency Rate": 0.031050114885425077,
+        "Country": "Silver"
+    },
+    {
+        "Currency Symbol": "CLF",
+        "Currency Rate": 0.0242142476633251,
+        "Country": "Chile"
+    },
+    {
+        "Currency Symbol": "XPD",
+        "Currency Rate": 0.0010599901420916785,
+        "Country": "Palladium"
+    },
+    {
+        "Currency Symbol": "XPT",
+        "Currency Rate": 0.0010410897294416011,
+        "Country": "Platinum"
+    },
+    {
+        "Currency Symbol": "XAU",
+        "Currency Rate": 0.0003431899783035296,
+        "Country": "Gold"
+    }
+]
