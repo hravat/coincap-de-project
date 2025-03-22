@@ -261,6 +261,59 @@ PLEASE NOTE THIS IS ONLY USED TO SET UP FLINK SERVICES IN DOCKER FOR THIS PROJEC
 
 
 --https://dev.to/ftisiot/build-a-streaming-sql-pipeline-with-apache-flink-and-apache-kafka-53jg 
---https://github.com/aiven/sql-cli-for-apache-flink-docker.git
+--[https://github.com/aiven/sql-cli-for-apache-flink-docker.git](https://github.com/Aiven-Open/sql-cli-for-apache-flink-docker/blob/main/docker-compose.yml)
+
+Help was taken setting up the docker using the following docker code to set up Flink as I was unable to set up Flink
+with a Kafka connector. 
+
+```
+version: "2.2"
+services:
+  sql-client:
+    container_name: 'sql-client'
+    build:
+      context: .
+      dockerfile: sql-client/Dockerfile
+    depends_on:
+      - jobmanager
+    environment:
+      FLINK_JOBMANAGER_HOST: jobmanager
+    volumes:
+      - ./settings/:/settings
+
+  jobmanager:
+    image: flink:1.17.1-scala_2.12-java11
+    ports:
+      - "8081:8081"
+    command: jobmanager
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+    volumes:
+      - ./settings/:/settings
+      - ./data/:/data
+
+  taskmanager:
+    image: flink:1.17.1-scala_2.12-java11
+    depends_on:
+      - jobmanager
+    command: taskmanager
+    scale: 1
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+        taskmanager.numberOfTaskSlots: 10
+    volumes:
+      - ./settings/:/settings
+      - ./data/:/data
+```
+
+
+
+
+
+
 
 
