@@ -112,7 +112,7 @@ However an API key is now mandatory to use the API.
     `export COINCAP_API_KEY=""`
     `source ~/.zshrc` or `source ~/.bashrc`
 
-4) New credits have been places where you can make atmost 2500 api calls per month
+4) New credits have been placed where you can make at most 2500 api calls per month
    Under the new restrictions, real time data consumption over longer periods is restricted.
 
 ### Steps to run the project locally
