@@ -22,3 +22,5 @@ tasks:
 #      - pip install requests
     commands:
       - python rates_api.py
+    env:
+      COINCAP_API_KEY: "{{ envs.coincap_api_key }}"

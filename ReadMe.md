@@ -93,7 +93,30 @@ to Kafka, as well as DBT , Grafana and archiving scripts.
 5) ReadMe.md :- This file contains the documentation for the project.
         
 
+
+
+
+### Setting API Credentials
+
+1) The Coincap API has been changed from version 2.0  to version 3.0.
+This new version changes in the API URL which is handled in the code.
+However an API key is now mandatory to use the API.
+
+2) Please head to the link below to get an API key.
+    
+    https://pro.coincap.io/dashboard
+
+3) Setup the environment variable for the API key
+
+    `nano ~/.zshrc ` or `nano ~/.bashrc` 
+    `export COINCAP_API_KEY=""`
+    `source ~/.zshrc` or `source ~/.bashrc`
+
+4) New credits have been places where you can make atmost 2500 api calls per month
+   Under the new restrictions, real time data consumption over longer periods is restricted.
+
 ### Steps to run the project locally
+
 
 1) Clone the repository to your local machine.
     `git clone https://github.com/hravat/coincap-de-project.git`

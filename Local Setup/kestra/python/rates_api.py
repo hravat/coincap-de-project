@@ -1,8 +1,11 @@
 import requests
 import json
 from datetime import datetime
+import os
 
-API_URL = "https://api.coincap.io/v2/rates"
+COINCAP_API_KEY = os.getenv("COINCAP_API_KEY")
+print(f"My env value is: {COINCAP_API_KEY}")
+API_URL = "https://rest.coincap.io/v3/rates?apiKey="+COINCAP_API_KEY
 KAFKA_REST_PROXY_URL = "http://host.docker.internal:8082"  # Replace with the actual REST Proxy URL
 KAFKA_TOPIC = "rates-api"
 
@@ -10,6 +13,8 @@ KAFKA_TOPIC = "rates-api"
 ###TEST COMMENT TO SEE IF FILE IS BEING PICKED BY KESTRA  
 
 def fetch_and_send_rates_to_kafka():
+
+
     try:
         response = requests.get(API_URL)
         response.raise_for_status()  # Raise an error for bad responses (4xx, 5xx)

@@ -396,6 +396,7 @@ services:
             url: http://kestra:8085/
             KAFKA_BOOTSTRAP_SERVERS: broker:29092 
         SECRET_DWH_STG_PASSWORD: ${KESTRA_SECRET_DWH_DB_PASSWORD}
+        KESTRA_COINCAP_API_KEY: ${COINCAP_API_KEY}
       ports:
         - "8085:8080"
         - "8086:8081"
